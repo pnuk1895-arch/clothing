@@ -10,7 +10,7 @@ export interface IUser extends Document {
   updatedAt: Date;
 }
 
-const userSchema = new Schema<IUser>(
+const userSchema = new Schema<IUser>(     
   {
     name: {
       type: String,
