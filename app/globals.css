@@ -51,3 +51,14 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+/* what our customers says  */
+
+.customer-stories-bg {
+  background-color: #fbf5ef;
+  background-image: url("/Images/WhatOurCustomerSays.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

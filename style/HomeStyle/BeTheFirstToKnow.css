@@ -1,0 +1,39 @@
+
+.newsletter-background {
+  background-color: #48111e;
+  background-image: url("/Images/newsletter-background.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.02);
+  transition: transform 1.2s ease;
+}
+
+.newsletter-section:hover .newsletter-background {
+  transform: scale(1);
+}
+
+.newsletter-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 800ms ease,
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.newsletter-reveal.newsletter-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .newsletter-reveal,
+  .newsletter-background {
+    transform: none;
+    transition: none;
+  }
+
+  .newsletter-reveal {
+    opacity: 1;
+  }
+}
