@@ -1,31 +1,43 @@
-import { connectDB } from "@/lib/db";
+import { NextResponse } from "next/server";
+import { registerUser } from "@/app/api/Services/auth.services";
+import { registerSchema } from "@/validations/auth.validation";
 import { AppError } from "@/lib/error";
-import { hashPassword } from "@/lib/password";
-import { userRespository } from "@/repositories/user.repository";
-import type { RegisterInput } from "@/validations/auth.validation";
 
-export async function registerUser(input: RegisterInput) {
-  await connectDB();
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const input = registerSchema.parse(body);
 
-  const existingUser = await userRespository.findByEamil(input.email);
+    const user = await registerUser(input);
 
-  if (existingUser) {
-    throw new AppError("User already exists", 409, "USER_ALREADY_EXISTS");
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Registration successful",
+        user,
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    if (error instanceof AppError) {
+      return NextResponse.json(
+        { success: false, message: error.message },
+        { status: error.statusCode }
+      );
+    }
+
+    if (error instanceof Error && error.name === "ZodError") {
+      return NextResponse.json(
+        { success: false, message: "Invalid registration data" },
+        { status: 400 }
+      );
+    }
+
+    console.error("Registration error:", error);
+
+    return NextResponse.json(
+      { success: false, message: "Internal server error" },
+      { status: 500 }
+    );
   }
-
-  const hashedPassword = await hashPassword(input.password);
-
-  const user = await userRespository.create({
-    name: input.name,
-    email: input.email,
-    password: hashedPassword,
-  });
-
-  return {
-    id: user._id.toString(),
-    name: user.name,
-    email: user.email,
-    role: user.role,
-    createdAt: user.createdAt,
-  };
 }
