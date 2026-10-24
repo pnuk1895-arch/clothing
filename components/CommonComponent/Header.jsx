@@ -544,15 +544,17 @@ export default function Header() {
 
     return (
         <>
-            <header
-                className={cn(
-                    "absolute inset-x-0 top-0 z-50 w-full",
-                    "transition-[background-color] duration-75 ease-in-out",
-                    scrolled
-                        ? "fixed bg-linear-to-r from-[#2E2A24]/95 via-[#6B5B44]/95 to-[#2E2A24]/95 shadow-lg backdrop-blur-xl"
-                        : "bg-transparent"
-                )}
-            >
+            <header className="fixed inset-x-0 top-0 z-50 isolate w-full">
+                {/* Animated background */}
+                <div
+                    aria-hidden="true"
+                    className={cn(
+                        "pointer-events-none absolute inset-0 -z-10",
+                        "bg-linear-to-r from-[#2E2A24]/95 via-[#6B5B44]/95 to-[#2E2A24]/95",
+                        "backdrop-blur-xl transition-opacity duration-700 ease-in-out",
+                        scrolled ? "opacity-100 shadow-lg" : "opacity-0 shadow-none"
+                    )}
+                />
                 {/* Announcement strip */}
                 <div
                     className={`hidden h-7 items-center justify-center border-b border-white/10 bg-linear-to-r from-[#42151F] via-[#6B2935] to-[#35151A] px-4 text-[10px] font-medium tracking-wide text-[#FAF7F2] transition-all duration-500 sm:flex ${scrolled ? "opacity-0 -translate-y-full h-0 overflow-hidden" : ""
@@ -577,8 +579,8 @@ export default function Header() {
                 {/* Main navigation */}
                 <div
                     className={`relative transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${scrolled
-                            ? "border-b border-[#DCC7B2]/70 bg-linear-to-r from-[#FAF7F2]/95 via-[#F8EEE5]/95 to-[#EAD9CC]/95 shadow-[0_8px_30px_rgba(46,42,36,0.10)] backdrop-blur-2xl"
-                            : "border-b border-white/15 bg-linear-to-b from-[#2E2A24]/10 to-transparent"
+                        ? "border-b border-[#DCC7B2]/70 bg-linear-to-r from-[#FAF7F2]/95 via-[#F8EEE5]/95 to-[#EAD9CC]/95 shadow-[0_8px_30px_rgba(46,42,36,0.10)] backdrop-blur-2xl"
+                        : "border-b border-white/15 bg-linear-to-b from-[#2E2A24]/10 to-transparent"
                         }`}
                 >
                     <div className="mx-auto flex h-16.5 max-w-360 items-center justify-between gap-3 px-4 sm:px-6 lg:h-19 lg:px-8">
@@ -599,7 +601,7 @@ export default function Header() {
 
                         {/* Logo */}
                         <div className="lg:min-w-41.25">
-                            <Logo light={!scrolled} onClick={closeAll} />
+                            <Logo onClick={closeAll} />
                         </div>
 
                         {/* Desktop links */}
@@ -630,10 +632,7 @@ export default function Header() {
                                                 closeAll();
                                             }
                                         }}
-                                        className={`group relative inline-flex items-center gap-1 rounded-full px-2.5 py-3 text-[11px] font-medium transition-colors duration-300 2xl:px-3 2xl:text-xs ${scrolled
-                                                ? "text-[#2E2A24] hover:text-[#8A594C]"
-                                                : "text-white/95 hover:text-white"
-                                            }`}
+                                        className="group relative inline-flex items-center gap-1 rounded-full px-2.5 py-3 text-[11px] font-medium transition-colors duration-300 2xl:px-3 2xl:text-xs text-[#2E2A24] hover:text-[#8A594C]"
                                     >
                                         {item.label}
                                         {item.menu && (
@@ -783,8 +782,8 @@ export default function Header() {
                                                     )
                                                 }
                                                 className={`flex w-full items-center justify-between rounded-lg px-3 py-3.5 text-sm transition-colors ${mobileExpanded === item.menu
-                                                        ? "bg-[#EAD9CC] text-[#6B2935]"
-                                                        : "text-[#2E2A24] hover:bg-[#EAD9CC]/60"
+                                                    ? "bg-[#EAD9CC] text-[#6B2935]"
+                                                    : "text-[#2E2A24] hover:bg-[#EAD9CC]/60"
                                                     }`}
                                             >
                                                 {item.label}
@@ -797,8 +796,8 @@ export default function Header() {
 
                                             <div
                                                 className={`grid transition-[grid-template-rows,opacity] duration-300 ${mobileExpanded === item.menu
-                                                        ? "grid-rows-[1fr] opacity-100"
-                                                        : "grid-rows-[0fr] opacity-0"
+                                                    ? "grid-rows-[1fr] opacity-100"
+                                                    : "grid-rows-[0fr] opacity-0"
                                                     }`}
                                             >
                                                 <div className="overflow-hidden">

@@ -2,6 +2,52 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* header  */
 
+@keyframes come {
+    from {
+        opacity: 0;
+        background-color: transparent;
+        box-shadow: 0 0 0 transparent;
+        backdrop-filter: blur(0);
+    }
 
+    to {
+        opacity: 1;
+        background-color: rgba(46, 42, 36, 0.95);
+        box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.12);
+        backdrop-filter: blur(24px);
+    }
+}
 
+@keyframes out {
+    from {
+        background-color: rgba(46, 42, 36, 0.95);
+        box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.12);
+        backdrop-filter: blur(24px);
+    }
+
+    to {
+        background-color: transparent;
+        box-shadow: 0 0 0 transparent;
+        backdrop-filter: blur(0);
+    }
+}
+
+.animation-header-comes {
+    animation: come 0.7s ease-in both;
+}
+
+.animation-header-outs {
+    animation: out 0.5s ease-in both;
+}
+
+/* best seliing  outfit  */
+
+.best-selling-background {
+    background-color: #fbf5ef;
+    background-image: url("/Images/floral-background.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
