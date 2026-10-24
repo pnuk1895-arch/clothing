@@ -557,10 +557,10 @@ export default function Header() {
                 />
                 {/* Announcement strip */}
                 <div
-                    className={`hidden h-7 items-center justify-center border-b border-white/10 bg-linear-to-r from-[#42151F] via-[#6B2935] to-[#35151A] px-4 text-[10px] font-medium tracking-wide text-[#FAF7F2] transition-all duration-500 sm:flex ${scrolled ? "opacity-0 -translate-y-full h-0 overflow-hidden" : ""
+                    className={`hidden h-7 items-center justify-center border-b border-white/10 bg-linear-to-r from-[#42151F] via-[#6B2935] to-[#35151A] text-[10px] font-medium tracking-wide text-[#FAF7F2] transition-all duration-500 sm:flex ${scrolled ? "opacity-0 -translate-y-full h-0 overflow-hidden" : ""
                         }`}
                 >
-                    <div className="mx-auto flex w-full max-w-360 items-center justify-between gap-3">
+                    <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
                         <span className="flex items-center gap-1.5">
                             <Sparkles size={11} className="text-[#DCC7B2]" />
                             Free Shipping on Orders Above ₹2999
@@ -583,7 +583,7 @@ export default function Header() {
                         : "border-b border-white/15 bg-linear-to-b from-[#2E2A24]/10 to-transparent"
                         }`}
                 >
-                    <div className="mx-auto flex h-16.5 max-w-360 items-center justify-between gap-3 px-4 sm:px-6 lg:h-19 lg:px-8">
+                    <div className="mx-auto flex h-16.5 max-w-screen-2xl items-center justify-between gap-3 px-4 sm:px-6 lg:h-19 lg:px-8">
                         {/* Mobile menu trigger */}
                         <button
                             type="button"
@@ -600,14 +600,14 @@ export default function Header() {
                         </button>
 
                         {/* Logo */}
-                        <div className="lg:min-w-41.25">
+                        <div className="lg:min-w-36">
                             <Logo onClick={closeAll} />
                         </div>
 
                         {/* Desktop links */}
                         <nav
                             aria-label="Main navigation"
-                            className="hidden flex-1 items-center justify-center gap-1 xl:flex"
+                            className="hidden flex-1 items-center justify-center min-[1120px]:gap-2 xl:gap-4 lg:flex"
                         >
                             {NAV_LINKS.map((item) => (
                                 <div key={item.label} className="relative">
@@ -632,12 +632,12 @@ export default function Header() {
                                                 closeAll();
                                             }
                                         }}
-                                        className="group relative inline-flex items-center gap-1 rounded-full px-2.5 py-3 text-[11px] font-medium transition-colors duration-300 2xl:px-3 2xl:text-xs text-[#2E2A24] hover:text-[#8A594C]"
+                                        className="group relative inline-flex items-center gap-1 rounded-full px-1.5 py-3 text-[14px] font-medium transition-colors duration-300 xl:text-[16px] 2xl:px-3 text-[#2E2A24] hover:text-[#8A594C]"
                                     >
                                         {item.label}
                                         {item.menu && (
                                             <ChevronDown
-                                                size={12}
+                                                size={14}
                                                 className={`transition-transform duration-300 ${activeMenu === item.menu ? "rotate-180" : ""
                                                     }`}
                                             />
@@ -649,7 +649,7 @@ export default function Header() {
                         </nav>
 
                         {/* Actions */}
-                        <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
+                        <div className="flex shrink-0 items-center gap-0 sm:gap-1 min-[1130px]:gap-5 xl:gap-5 ">
                             <button
                                 type="button"
                                 aria-label="Search products"
@@ -657,8 +657,7 @@ export default function Header() {
                                 className="group inline-flex size-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-[#DCC7B2]/30 sm:size-10"
                             >
                                 <Search
-                                    size={18}
-                                    className="transition-transform duration-300 group-hover:scale-110"
+                                    className="transition-transform size-6 duration-300 group-hover:scale-110  xl:size-6 "
                                 />
                             </button>
 
@@ -667,7 +666,7 @@ export default function Header() {
                                 aria-label="My account"
                                 className="hidden size-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-[#DCC7B2]/30 sm:inline-flex"
                             >
-                                <UserRound size={18} />
+                                <UserRound  className="size-5 xl:size-6 " />
                             </Link>
 
                             <Link
@@ -676,8 +675,7 @@ export default function Header() {
                                 className="hidden size-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-[#DCC7B2]/30 sm:inline-flex"
                             >
                                 <Heart
-                                    size={18}
-                                    className="transition-transform duration-300 hover:scale-110"
+                                    className="transition-transform duration-300 hover:scale-110 xl:size-6 "
                                 />
                             </Link>
 
@@ -686,18 +684,10 @@ export default function Header() {
                                 aria-label="Shopping bag"
                                 className="relative inline-flex size-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-[#DCC7B2]/30 sm:size-10"
                             >
-                                <ShoppingBag size={18} />
+                                <ShoppingBag className="size-5 xl:size-6 " />
                                 <span className="absolute right-0.5 top-0.5 flex size-4 items-center justify-center rounded-full bg-[#6B5B44] text-[9px] font-semibold text-white ring-2 ring-[#FAF7F2]">
                                     0
                                 </span>
-                            </Link>
-
-                            <Link
-                                href="/custom-services/consultation"
-                                className="ml-1 hidden items-center gap-1.5 rounded-full border border-[#DCC7B2]/40 bg-linear-to-r from-[#6B5B44] to-[#8A6247] px-4 py-2.5 text-[11px] font-medium text-[#FAF7F2] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:from-[#42151F] hover:to-[#6B2935] hover:shadow-lg sm:inline-flex lg:px-5 lg:text-xs"
-                            >
-                                Book Consultation
-                                <ArrowUpRight size={13} />
                             </Link>
                         </div>
                     </div>
