@@ -150,7 +150,7 @@ export default function FindPerfectLook() {
                 ❧
             </div>
 
-            <div className="mx-auto w-full max-w-360 px-4 sm:px-6 lg:px-10">
+            <div className="mx-auto w-[90%] max-w-content-area">
                 {/* Section heading */}
                 <div
                     className={cn(

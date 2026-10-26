@@ -41,6 +41,13 @@ const collections = [
     },
 ];
 
+const SectionDetail={
+    TopHeading:"CURATED FOR YOUR MOMENTS",
+    MainContent:`From timeless traditional elegance to contemporary occasion wear,
+                    discover pieces made to make every celebration unforgettable.`
+}
+
+
 function CollectionCard({ collection, index, visible }) {
     const isWomen = collection.theme === "women";
 
@@ -218,7 +225,7 @@ export default function CollectionsSection() {
             className={cn(
                 "relative isolate overflow-hidden",
                 "bg-linear-to-b from-[#F8F2EB] via-[#F8F2EB] to-[#F5EDE4]",
-                "px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-20"
+                "py-12 sm:py-16  lg:py-20"
             )}
         >
             {/* Soft transition from the hero above */}
@@ -237,39 +244,9 @@ export default function CollectionsSection() {
                 className="pointer-events-none absolute -right-32 bottom-0 z-0 size-80 rounded-full bg-[#B9987A]/15 blur-3xl"
             />
 
-            <div className="relative z-10 mx-auto max-w-7xl">
+            <div className="relative z-10 mx-auto w-[90%] max-w-content-area">
                 {/* Section heading */}
-                <div
-                    className={cn(
-                        "mb-7 flex flex-col justify-between gap-4 sm:mb-9",
-                        "sm:flex-row sm:items-end",
-                        "transition-all duration-700",
-                        visible
-                            ? "translate-y-0 opacity-100"
-                            : "translate-y-6 opacity-0"
-                    )}
-                >
-                    <div>
-                        <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.28em] text-[#9B7057] sm:text-[10px]">
-                            CURATED FOR YOUR MOMENTS
-                        </p>
-
-                        <h2
-                            id="collections-heading"
-                            className="font-serif text-3xl leading-tight tracking-[-0.035em] text-[#2E2A24] sm:text-4xl lg:text-5xl"
-                        >
-                            Find Your
-                            <span className="ml-2 italic text-[#7A2638]">
-                                Signature Style
-                            </span>
-                        </h2>
-
-                        <p className="mt-3 max-w-xl text-xs leading-6 text-[#6B5B44]/90 sm:text-sm">
-                            From timeless traditional elegance to contemporary occasion wear,
-                            discover pieces made to make every celebration unforgettable.
-                        </p>
-                    </div>
-
+                <title >
                     <Link
                         href="/collections"
                         className="group inline-flex w-fit shrink-0 items-center gap-2 border-b border-[#B9987A] pb-1 text-xs font-medium text-[#6B2D3A] transition-colors hover:border-[#6B2D3A] hover:text-[#2E2A24]"
@@ -277,7 +254,9 @@ export default function CollectionsSection() {
                         View All Collections
                         <FiArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                     </Link>
-                </div>
+                </title>
+
+                
 
                 {/* Collection banners */}
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-4 lg:gap-6">

@@ -125,10 +125,10 @@ export default function HeroSection() {
                     "max-lg:from-[#FAF7F2]/95",
                     "max-lg:via-[#FAF7F2]/65",
                     "max-lg:to-transparent",
-                    "max-md:bg-linear-to-t",
-                    "max-md:from-[#FAF7F2]/95",
-                    "max-md:via-[#FAF7F2]/75",
-                    "max-md:to-transparent"
+                    "max-md:bg-linear-to-r",
+                    "max-md:from-[#FAF7F2]/85 from-0%",
+                    "max-md:via-[#FAF7F2]/40 via-20%",
+                    "max-md:to-transparent to-26%"
                 )}
             />
             <div
@@ -148,7 +148,7 @@ export default function HeroSection() {
                 className="pointer-events-none absolute left-0 top-0 -z-10 hidden h-full w-20 bg-linear-to-r from-[#DCC7B2]/30 to-transparent xl:block"
             />
 
-            <div className="mx-auto w-full max-w-360 px-5 pb-12 pt-28 sm:px-8 sm:pb-14 sm:pt-32 lg:px-12 lg:pb-20 lg:pt-36 xl:px-16">
+            <div className="mx-auto w-[90%] max-w-content-area pb-12 pt-28 sm:pb-14 sm:pt-32 lg:pb-20 lg:pt-36">
                 <div
                     className={cn(
                         "grid items-center gap-8",

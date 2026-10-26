@@ -80,7 +80,7 @@ export default function FeaturesSection() {
         "via-[#F8F2EB]/95 via-65%",
         "to-[#F8F2EB] to-100%",
         "backdrop-blur-md",
-        "px-4 py-6 sm:px-6 sm:py-7 lg:px-10 lg:py-8"
+        "py-6 sm:py-7 lg:py-8"
       )}
     >
       {/* Soft transition from the hero */}
@@ -100,7 +100,7 @@ export default function FeaturesSection() {
         className="pointer-events-none absolute -right-16 bottom-0 size-40 rounded-full bg-[#B9987A]/10 blur-3xl"
       />
 
-      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-7 lg:grid-cols-5 lg:gap-6">
+      <div className="relative mx-auto grid w-[90%] max-w-content-area grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-7 lg:grid-cols-5 lg:gap-6">
         {features.map(({ title, description, Icon }, index) => (
           <article
             key={title}
