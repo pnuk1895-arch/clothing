@@ -116,7 +116,7 @@ const products = [
     },
 ];
 
-const formatPrice = (price) =>
+const formatPrice = (price: number) =>
     new Intl.NumberFormat("en-IN", {
         style: "currency",
         currency: "INR",
@@ -124,11 +124,11 @@ const formatPrice = (price) =>
     }).format(price);
 
 export default function BestSellingOutfits() {
-    const sectionRef = useRef(null);
-    const sliderRef = useRef(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
+    const sliderRef = useRef<HTMLDivElement | null>(null);
 
     const [activeCategory, setActiveCategory] = useState("All");
-    const [favorites, setFavorites] = useState([]);
+    const [favorites, setFavorites] = useState<number[]>([]);
     const [visible, setVisible] = useState(false);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
@@ -189,7 +189,7 @@ export default function BestSellingOutfits() {
         };
     }, [updateScrollButtons, activeCategory]);
 
-    const scrollProducts = (direction) => {
+    const scrollProducts = (direction: number) => {
         const slider = sliderRef.current;
 
         if (!slider) return;
@@ -200,7 +200,7 @@ export default function BestSellingOutfits() {
         });
     };
 
-    const toggleFavorite = (productId) => {
+    const toggleFavorite = (productId: number) => {
         setFavorites((current) =>
             current.includes(productId)
                 ? current.filter((id) => id !== productId)
@@ -226,7 +226,7 @@ export default function BestSellingOutfits() {
                 className="pointer-events-none absolute -left-24 top-16 z-0 size-64 rounded-full bg-[#EAD7C6]/30 blur-3xl"
             />
 
-            <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="relative z-10 mx-auto w-[90%] max-w-content-area">
                 {/* Heading and carousel controls */}
                 <div
                     className={cn(

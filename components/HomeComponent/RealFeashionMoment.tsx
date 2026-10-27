@@ -58,8 +58,8 @@ const moments = [
 ];
 
 export default function RealFashionMoments() {
-    const galleryRef = useRef(null);
-    const sectionRef = useRef(null);
+    const galleryRef = useRef<HTMLDivElement | null>(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
     const [visible, setVisible] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -83,7 +83,7 @@ export default function RealFashionMoments() {
         return () => observer.disconnect();
     }, []);
 
-    const scrollGallery = useCallback((direction) => {
+    const scrollGallery = useCallback((direction: number) => {
         const gallery = galleryRef.current;
 
         if (!gallery) return;
@@ -135,7 +135,7 @@ export default function RealFashionMoments() {
                 className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-[#FCF5EE]/70 via-transparent to-[#FCF5EE]/85"
             />
 
-            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto w-[90%] max-w-content-area">
                 {/* Heading and navigation */}
                 <div
                     className={cn(

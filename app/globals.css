@@ -3,172 +3,436 @@
 @import "shadcn/tailwind.css";
 
 
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
 
     --color-brand-light-Cream: var(--brand-light-Cream);
     --color-brand-cream: var(--brand-cream);
-    --color-brand-beige:var(--brand-beige);
-    --color-brand-tan:var(--brand-tan);
-    --color-brand-Brown:var(--brand-Brown);
-    --color-brand-heading-dark:var(--brand-heading-dark);
-    --color-brand-soft-card-Beigevar:var(--brand-soft-card-Beigevar);
-    /* --spacing-content-area: var(--content-area);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --font-serif: var(--font-cormorant), Georgia, serif;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  /* --color-chart-2: var(--chart-2); */
-    /* --color-chart-1: var(--chart-1); */
-    /* --color-ring: var(--ring); */
-    /* --color-input: var(--input); */
-    /* --color-border: var(--border); */
-    /* --color-destructive: var(--destructive); */
-    /* --color-accent-foreground: var(--accent-foreground); */
-    /* --color-accent: var(--accent); */
-    /* --color-muted-foreground: var(--muted-foreground); */
-    /* --color-muted: var(--muted); */
-    /* --color-secondary-foreground: var(--secondary-foreground); */
-    /* --color-secondary: var(--secondary); */
-    /* --color-primary-foreground: var(--primary-foreground); */
-    /* --color-primary: var(--primary); */
-    /* --color-popover-foreground: var(--popover-foreground); */
-    /* --color-popover: var(--popover); */
-    /* --color-card-foreground: var(--card-foreground); */
-    /* --color-card: var(--card); */
-    /* --radius-sm: calc(var(--radius) * 0.6); */
-    /* --radius-md: calc(var(--radius) * 0.8); */
-    /* --radius-lg: var(--radius); */
-    /* --radius-xl: calc(var(--radius) * 1.4); */
-    /* --radius-2xl: calc(var(--radius) * 1.8); */
-    /* --radius-3xl: calc(var(--radius) * 2.2); */
-    /* --radius-4xl: calc(var(--radius) * 2.6); */
-
-    /* Global Brand Color Tokens */
-    /* /* --color-brand-navy: var(--brand-navy); */
-    /* --color-brand-navy-dark: var(--brand-navy-dark); */
-    /* --color-brand-navy-hover: var(--brand-navy-hover); */
-    /* --color-brand-gold: var(--brand-gold); */
-    /* --color-brand-gold-dark: var(--brand-gold-dark); */
-    /* --color-brand-creme: var(--brand-creme); */
-    /* --color-brand-creme-dark: var(--brand-creme-dark);/ */
-    /* --color-brand-creme-muted: var(--brand-creme-muted); */
-    /* --color-brand-creme-light: var(--brand-creme-light); */
-    /* --color-brand-creme-subtle: var(--brand-creme-subtle); */
-    /* --color-brand-border: var(--brand-border); */
-    /* --color-brand-border-muted: var(--brand-border-muted); */
-    /* --color-brand-border-dark: var(--brand-border-dark); */
-    /* --color-brand-text-muted: var(--brand-text-muted); */
+    --color-brand-beige: var(--brand-beige);
+    --color-brand-tan: var(--brand-tan);
+    --color-brand-Brown: var(--brand-Brown);
     --color-brand-heading-dark: var(--brand-heading-dark);
-    /* --color-brand-text-secondary: var(--brand-text-secondary); */
-    /* --color-brand-text-subtle: var(--brand-text-subtle); */
-    /* --color-brand-success: var(--brand-success); */
-    --max-width-content-area: var(--content-area)
+    --color-brand-soft-card-Beigevar: var(--brand-soft-card-Beigevar);
+    --color-brand-muted-rosewood: var(--brand-muted-rosewood);
+    --color-header-burgundy: var(--header-burgundy);
+    --color-brand-burgundy: var(--brand-burgundy);
+    --color-brand-rosewood: var(--brand-rosewood);
+    --color-brand-deep-burgundy: var(--brand-deep-burgundy);
+    --color-brand-muted-rosewood: var(--brand-muted-rosewood);
+    --shadow-brand-soft: 0 8px 30px color-mix(in srgb, var(--brand-heading-dark) 10%, transparent);
+    /* footer colors */
+    --color-footer-background: var(--footer-background);
+    --color-footer-foreground: var(--footer-foreground);
+    --color-footer-gradient-start: var(--footer-gradient-start);
+    --color-footer-gradient-middle: var(--footer-gradient-middle);
+    --color-footer-gradient-end: var(--footer-gradient-end);
+    --color-footer-gold: var(--footer-gold);
+    --color-footer-heading: var(--footer-heading);
+    --color-footer-muted: var(--footer-muted);
+    --color-footer-social: var(--footer-social);
+    --color-footer-hover-text: var(--footer-hover-text);
+    --color-footer-benefit: var(--footer-benefit);
+    --color-footer-outline: var(--footer-outline);
+    --color-footer-button: var(--footer-button);
+    --color-footer-button-text: var(--footer-button-text);
+    --max-width-content-area:var(--content-area)
 }
+
 
 :root {
     --content-area: 1440px;
 
     --brand-light-Cream: #F8EEE5;
     --brand-cream: #FAF7F2;
-    --brand-beige:#DCC7B2;
-    --brand-tan:#B9987A;
-    --brand-Brown:#6B5B44;
-    --brand-heading-dark:#2E2A24;
-    --brand-soft-card-Beige:#EAD9CC;
-    /* Brand Tokens */
-    /* --brand-navy: #142943; */
-    /* --brand-navy-dark: #0c1d2d; */
-    /* --brand-navy-hover: #172d43; */
-    /* --brand-gold: #d8c59d; */
-    /* --brand-gold-dark: #8d7547; */
-    /* --brand-creme-dark: #eee9df; */
-    /* --brand-creme-muted: #e9e4d9; */
-    /* --brand-creme-light: #F8EEE5; */
-    /* --brand-creme-subtle: #e5dfd3; */
-    /* --brand-border: #e4dfd3; */
-    /* --brand-border-muted: #ded8ca; */
-    /* --brand-border-dark: #d8d2c6; */
-    /* --brand-text-muted: #6d675c; */
-    
-    /* --brand-text-secondary: #5e5e5e; */
-    /* --brand-text-subtle: #777777; */
-    /* --brand-success: #08b80b; */
+    --brand-beige: #DCC7B2;
+    --brand-tan: #B9987A;
+    --brand-Brown: #6B5B44;
+    --brand-heading-dark: #2E2A24;
+    --brand-soft-card-Beige: #EAD9CC;
+    --header-burgundy: #42151F;
+    --brand-rosewood: #6B2935;
+    --brand-deep-burgundy: #35151A;
+    --brand-muted-rosewood: #8A594C;
+    --footer-background: #21090E;
+    --footer-foreground: #F9EDE0;
+    --footer-gradient-start: #5A1021;
+    --footer-gradient-middle: #310B15;
+    --footer-gradient-end: #17070B;
+    --footer-gold: #DDB995;
+    --footer-heading: #F5D9BE;
+    --footer-muted: #E7D3C8;
+    --footer-social: #E8C7A7;
+    --footer-hover-text: #321018;
+    --footer-benefit: #E4BD98;
+    --footer-outline: #E6C5A4;
+    --footer-button: #70412D;
+    --footer-button-text: #FFF3E5;
 
-    /* --background: #f8f5ed; */
-    /* --foreground: #142943; */
-    /* --card: #ffffff; */
-    /* --card-foreground: #142943; */
-    /* --popover: #ffffff; */
-    /* --popover-foreground: #142943; */
-    /* --primary: #142943; */
-    /* --primary-foreground: #f8f5ed; */
-    /* --secondary: #d8c59d; */
-    /* --secondary-foreground: #142943; */
-    /* --muted: #eee9df; */
-    /* --muted-foreground: #6d675c; */
-    /* --accent: #d8c59d; */
-    /* --accent-foreground: #142943; */
-    /* --destructive: #991b1b; */
-    /* --destructive-foreground: #fef2f2; */
-    /* --border: #e4dfd3; */
-    /* --input: #e4dfd3; */
-    /* --ring: #142943; */
-    /* --radius: 0.5rem; */
-    /* --sidebar: #ffffff; */
-    /* --sidebar-foreground: #142943; */
-    /* --sidebar-primary: #142943; */
-    /* --sidebar-primary-foreground: #f8f5ed; */
-    /* --sidebar-accent: #d8c59d; */
-    /* --sidebar-accent-foreground: #142943; */
-    /* --sidebar-border: #e4dfd3; */
-    /* --sidebar-ring: #142943; */
 }
 
-.dark {
-    --content-area: 1440px;
-    --background: #1a0608;
-    --foreground: #fed7b8;
-    --card: #260a0d;
-    --card-foreground: #fdf2ea;
-    --popover: #260a0d;
-    --popover-foreground: #fdf2ea;
-    --primary: #fed7b8;
-    --primary-foreground: #59171b;
-    --secondary: #3d1114;
-    --secondary-foreground: #fed7b8;
-    --muted: #3d1114;
-    --muted-foreground: #d4b5a3;
-    --accent: #3d1114;
-    --accent-foreground: #fed7b8;
-    --destructive: #7f1d1d;
-    --destructive-foreground: #fef2f2;
-    --border: #4a181c;
-    --input: #4a181c;
-    --ring: #fed7b8;
-    --sidebar: #1a0608;
-    --sidebar-foreground: #fed7b8;
-    --sidebar-primary: #fed7b8;
-    --sidebar-primary-foreground: #59171b;
-    --sidebar-accent: #3d1114;
-    --sidebar-accent-foreground: #fed7b8;
-    --sidebar-border: #4a181c;
-    --sidebar-ring: #fed7b8;
+
+@utility bg-footer-glow {
+    background-image: radial-gradient(ellipse at 50% 0%,
+            rgba(143, 57, 64, 0.28),
+            transparent 65%);
 }
+
+/* Add these utilities to your existing global.css. They use your existing theme variables. */
+@utility bg-hero-overlay {
+    background-image: linear-gradient(to right,
+            color-mix(in srgb, var(--brand-cream) 98%, transparent) 0%,
+            color-mix(in srgb, var(--brand-cream) 94%, transparent) 28%,
+            color-mix(in srgb, var(--brand-cream) 78%, transparent) 43%,
+            color-mix(in srgb, var(--brand-cream) 36%, transparent) 59%,
+            transparent 78%);
+}
+
+@utility bg-hero-overlay-tablet {
+    background-image: linear-gradient(to right,
+            color-mix(in srgb, var(--brand-cream) 96%, transparent) 0%,
+            color-mix(in srgb, var(--brand-cream) 80%, transparent) 10%,
+            color-mix(in srgb, var(--brand-cream) 16%, transparent) 30%,
+            color-mix(in srgb, var(--brand-cream) 12%, transparent) 40%,
+            transparent 100%);
+}
+
+@utility bg-hero-overlay-mobile {
+    background-image: linear-gradient(to right,
+            color-mix(in srgb, var(--brand-cream) 92%, transparent) 0%,
+            transparent 38%,
+            transparent 100%)
+}
+
+@utility bg-hero-bottom-fade {
+    background-image: linear-gradient(to bottom,
+            transparent 36%,
+            color-mix(in srgb, var(--brand-cream) 73%, transparent) 75%,
+            var(--brand-cream) 100%);
+}
+
+@utility bg-hero-right-accent {
+    background-image: linear-gradient(to left,
+            color-mix(in srgb, var(--header-burgundy) 80%, transparent) 0%,
+            transparent) 45%;
+}
+
+@utility bg-hero-left-accent {
+    background-image: linear-gradient(to right,
+            color-mix(in srgb, var(--brand-beige) 30%, transparent),
+            transparent);
+}
+
+
+/* features section  */
+
+/* Add these custom utilities to your existing global.css. */
+@utility bg-features-section {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--brand-cream) 55%, transparent) 0%,
+    color-mix(in srgb, var(--brand-cream) 85%, transparent) 25%,
+    color-mix(in srgb, var(--brand-light-Cream) 95%, transparent) 65%,
+    var(--brand-light-Cream) 100%
+  );
+}
+
+@utility bg-features-top-glow {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, white 20%, transparent),
+    transparent
+  );
+}
+
+@utility bg-features-left-accent {
+  background-color: color-mix(in srgb, var(--brand-soft-card-Beige) 30%, transparent);
+}
+
+@utility bg-features-right-accent {
+  background-color: color-mix(in srgb, var(--brand-tan) 10%, transparent);
+}
+
+@utility bg-features-icon {
+  background-image: linear-gradient(
+    to bottom right,
+    color-mix(in srgb, var(--brand-beige) 55%, white),
+    color-mix(in srgb, var(--brand-rosewood) 8%, white)
+  );
+}
+
+
+/* shop by ocassion  */
+
+/* Add these custom utilities to your existing global.css. They use your existing theme variables. */
+
+@utility bg-perfect-look-top-glow {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--brand-soft-card-Beige) 65%, transparent),
+    color-mix(in srgb, var(--brand-cream) 80%, transparent),
+    transparent
+  );
+}
+
+@utility bg-occasion-card-footer {
+  background-image: linear-gradient(
+    to bottom,
+    var(--brand-cream),
+    var(--brand-light-Cream)
+  );
+}
+
+/* collection gallery */
+
+/* Custom color and gradient utilities for CollectionsSection. Add to global.css. */
+@utility bg-collection-card {
+  background-color: var(--brand-soft-card-Beige);
+}
+
+@utility shadow-collection-card {
+  box-shadow: 0 12px 35px color-mix(in srgb, var(--brand-heading-dark) 8%, transparent);
+}
+
+@utility shadow-collection-card-hover {
+  box-shadow: 0 24px 55px color-mix(in srgb, var(--brand-heading-dark) 18%, transparent);
+}
+
+
+@utility bg-collection-vignette {
+  background-image: linear-gradient(to top,
+    color-mix(in srgb, var(--brand-deep-burgundy) 25%, transparent),
+    transparent 65%,
+    color-mix(in srgb, var(--brand-cream) 10%, transparent));
+}
+
+@utility bg-collection-accent-line {
+  background-image: linear-gradient(to right,
+    var(--brand-rosewood), var(--brand-tan), var(--brand-soft-card-Beige));
+}
+
+@utility bg-collections-section {
+  background-image: linear-gradient(to bottom,
+    var(--brand-light-Cream),
+    color-mix(in srgb, var(--brand-light-Cream) 90%, var(--brand-beige)) 100%);
+}
+
+@utility bg-collections-top-glow {
+  background-image: linear-gradient(to bottom, var(--brand-cream), transparent);
+}
+
+/* what our customer say  */
+
+/* Custom theme-based utilities for WhatOurCustomersSay. Append to global.css. */
+
+@utility bg-customer-overlay {
+  background-color: color-mix(in srgb, var(--brand-light-Cream) 35%, transparent);
+}
+
+@utility bg-customer-control {
+  background-color: color-mix(in srgb, var(--brand-cream) 80%, transparent);
+}
+
+@utility bg-customer-card {
+  background-color: color-mix(in srgb, var(--brand-cream) 90%, transparent);
+}
+
+@utility shadow-customer-card {
+  box-shadow: 0 5px 22px color-mix(in srgb, var(--brand-Brown) 6%, transparent);
+}
+
+@utility shadow-customer-card-hover {
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--brand-Brown) 12%, transparent);
+}
+
+@utility text-customer-quote {
+  color: color-mix(in srgb, var(--brand-beige) 80%, transparent);
+}
+
+@utility text-customer-star {
+  color: var(--footer-gold);
+}
+
+@utility border-customer-card-border {
+  border-color: var(--brand-soft-card-Beige);
+}
+
+/* occasion */
+
+/* Custom theme-based utilities for OccasionServices. Append to global.css. */
+
+@utility bg-occasion-services-section {
+  background-color: color-mix(in srgb, var(--brand-light-Cream) 85%, var(--brand-beige));
+}
+
+@utility bg-occasion-services-left-glow {
+  background-color: color-mix(in srgb, var(--brand-beige) 30%, transparent);
+}
+
+@utility bg-occasion-services-right-glow {
+  background-color: color-mix(in srgb, var(--brand-rosewood) 5%, transparent);
+}
+
+@utility border-occasion-services-card {
+  border-color: color-mix(in srgb, var(--brand-beige) 65%, var(--brand-light-Cream));
+}
+
+@utility bg-occasion-services-card {
+  background-color: color-mix(in srgb, var(--brand-cream) 80%, transparent);
+}
+
+@utility shadow-occasion-services-card {
+  box-shadow: 0 10px 15px -3px color-mix(in srgb, var(--brand-Brown) 10%, transparent);
+}
+
+@utility bg-occasion-services-icon {
+  background-color: color-mix(in srgb, var(--brand-beige) 55%, var(--brand-light-Cream));
+}
+
+@utility from-occasion-services-image-shade {
+  --tw-gradient-from: color-mix(in srgb, var(--brand-deep-burgundy) 35%, transparent) var(--tw-gradient-from-position);
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+@utility to-occasion-services-image-highlight {
+  --tw-gradient-to: color-mix(in srgb, var(--brand-light-Cream) 10%, transparent) var(--tw-gradient-to-position);
+}
+
+@utility bg-occasion-services-label {
+  background-color: color-mix(in srgb, var(--brand-cream) 75%, transparent);
+}
+
+@utility bg-occasion-services-overlay {
+  background-color: color-mix(in srgb, var(--brand-cream) 95%, transparent);
+}
+
+@utility shadow-occasion-services-overlay {
+  --tw-shadow-color: color-mix(in srgb, var(--brand-deep-burgundy) 10%, transparent);
+}
+
+
+/* made just for you  */
+
+/* MadeJustForYou color utilities — append to global.css */
+@utility bg-made-just-glow {
+  background-color: color-mix(in srgb, var(--brand-beige) 35%, transparent);
+}
+@utility text-brand-made-label {
+  color: color-mix(in srgb, var(--brand-Brown) 85%, var(--brand-tan));
+}
+@utility text-brand-made-muted {
+  color: color-mix(in srgb, var(--brand-Brown) 80%, var(--brand-cream));
+}
+@utility border-made-just-border {
+  border-color: color-mix(in srgb, var(--brand-beige) 75%, var(--brand-cream));
+}
+@utility bg-made-just-icon {
+  background-color: color-mix(in srgb, var(--brand-beige) 55%, var(--brand-light-Cream));
+}
+@utility text-brand-made-service-title {
+  color: color-mix(in srgb, var(--brand-heading-dark) 85%, var(--brand-Brown));
+}
+@utility text-brand-made-service-description {
+  color: color-mix(in srgb, var(--brand-Brown) 60%, var(--brand-cream));
+}
+@utility text-brand-made-check-text {
+  color: color-mix(in srgb, var(--brand-Brown) 85%, var(--brand-cream));
+}
+@utility bg-made-just-image-shade {
+  background-color: var(--brand-beige);
+}
+@utility from-made-just-image-shade {
+  --tw-gradient-from: color-mix(in srgb, var(--brand-deep-burgundy) 40%, transparent) var(--tw-gradient-from-position);
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+@utility to-made-just-image-highlight {
+  --tw-gradient-to: color-mix(in srgb, var(--brand-light-Cream) 10%, transparent) var(--tw-gradient-to-position);
+}
+@utility bg-made-just-label {
+  background-color: color-mix(in srgb, var(--brand-cream) 75%, transparent);
+}
+@utility text-made-just-subtitle {
+  color: color-mix(in srgb, var(--brand-light-Cream) 85%, var(--brand-beige));
+}
+@utility bg-made-just-video-card {
+  background-color: color-mix(in srgb, var(--brand-deep-burgundy) 75%, transparent);
+}
+@utility shadow-made-just-hover {
+  --tw-shadow-color: color-mix(in srgb, var(--brand-rosewood) 15%, transparent);
+}
+@utility shadow-made-just-cta {
+  --tw-shadow-color: color-mix(in srgb, var(--footer-button) 10%, transparent);
+}
+@utility shadow-made-just-modal {
+  --tw-shadow-color: color-mix(in srgb, var(--brand-deep-burgundy) 15%, transparent);
+}
+@utility bg-made-just-backdrop {
+  background-color: color-mix(in srgb, var(--brand-deep-burgundy) 80%, transparent);
+}
+@utility from-made-just-modal-image-shade {
+  --tw-gradient-from: color-mix(in srgb, var(--brand-deep-burgundy) 80%, transparent) var(--tw-gradient-from-position);
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+@utility via-made-just-modal-image-tint {
+  --tw-gradient-via: color-mix(in srgb, var(--brand-deep-burgundy) 10%, transparent) var(--tw-gradient-via-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
+}
+@utility text-made-just-modal-label {
+  color: color-mix(in srgb, var(--brand-light-Cream) 85%, var(--brand-beige));
+}
+@utility bg-made-just-close-button {
+  background-color: color-mix(in srgb, var(--brand-cream) 95%, transparent);
+}
+
+/* how it works */
+
+/* Add these Tailwind v4 custom utilities to global.css. */
+@utility bg-how-it-works-icon {
+  background-color: color-mix(in srgb, var(--brand-beige) 55%, var(--brand-light-Cream));
+}
+
+@utility text-how-it-works-description {
+  color: color-mix(in srgb, var(--brand-Brown) 80%, var(--brand-heading-dark));
+}
+
+@utility text-how-it-works-link-hover {
+  color: var(--how-it-works-link-hover);
+}
+
+@utility border-how-it-works-icon-border {
+  border-color: color-mix(in srgb, var(--brand-beige) 75%, var(--brand-light-Cream));
+}
+
+@utility text-how-it-works-icon-foreground {
+  color: color-mix(in srgb, var(--brand-muted-rosewood) 75%, var(--brand-Brown));
+}
+
+@utility bg-how-it-works-number {
+  background-color: color-mix(in srgb, var(--brand-cream) 90%, white);
+}
+
+@utility border-how-it-works-number-border {
+  border-color: color-mix(in srgb, var(--brand-soft-card-Beige) 90%, var(--brand-beige));
+}
+
+@utility text-how-it-works-step-title {
+  color: color-mix(in srgb, var(--brand-heading-dark) 80%, var(--brand-Brown));
+}
+
+@utility text-how-it-works-connector {
+  color: color-mix(in srgb, var(--brand-tan) 70%, var(--brand-beige));
+}
+
+@utility text-how-it-works-muted {
+  color: color-mix(in srgb, var(--brand-Brown) 70%, var(--brand-tan));
+}
+
+@utility text-how-it-works-sparkle {
+  color: color-mix(in srgb, var(--brand-tan) 75%, var(--brand-Brown));
+}
+
 
 /* header  */
 

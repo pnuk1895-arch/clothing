@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -40,8 +39,8 @@ const features = [
 ];
 
 export default function FeaturesSection() {
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef < HTMLElement | null > (null);
+  const [isVisible, setIsVisible] = useState < boolean > (false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -74,11 +73,7 @@ export default function FeaturesSection() {
         "relative z-10 -mt-8 w-full overflow-hidden",
         "rounded-t-3xl sm:rounded-t-4xl",
         "border-t border-white/40",
-        "bg-linear-to-b",
-        "from-[#FAF7F2]/55 from-0%",
-        "via-[#FAF7F2]/85 via-25%",
-        "via-[#F8F2EB]/95 via-65%",
-        "to-[#F8F2EB] to-100%",
+        "bg-features-section",
         "backdrop-blur-md",
         "py-6 sm:py-7 lg:py-8"
       )}
@@ -86,18 +81,18 @@ export default function FeaturesSection() {
       {/* Soft transition from the hero */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-linear-to-b from-white/20 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-features-top-glow"
       />
 
       {/* Subtle decorative accents */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-16 top-0 size-40 rounded-full bg-[#EADCCF]/30 blur-3xl"
+        className="pointer-events-none absolute -left-16 top-0 size-40 rounded-full bg-features-left-accent blur-3xl"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-16 bottom-0 size-40 rounded-full bg-[#B9987A]/10 blur-3xl"
+        className="pointer-events-none absolute -right-16 bottom-0 size-40 rounded-full bg-features-right-accent blur-3xl"
       />
 
       <div className="relative mx-auto grid w-[90%] max-w-content-area grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-7 lg:grid-cols-5 lg:gap-6">
@@ -109,8 +104,8 @@ export default function FeaturesSection() {
               "group relative flex min-w-0 items-center gap-3",
               "rounded-xl border border-transparent p-2",
               "transition-all duration-700 ease-out",
-              "hover:-translate-y-1 hover:border-orange-200/80",
-              "hover:bg-white/70 hover:shadow-lg hover:shadow-amber-950/5",
+              "hover:-translate-y-1 hover:border-brand-tan/60",
+              "hover:bg-white/70 hover:shadow-lg hover:shadow-brand-heading-dark/5",
               isVisible
                 ? "translate-y-0 opacity-100"
                 : "translate-y-5 opacity-0"
@@ -120,13 +115,13 @@ export default function FeaturesSection() {
             <div
               className={cn(
                 "relative flex size-10 shrink-0 items-center justify-center",
-                "rounded-full border border-orange-200/70",
-                "bg-linear-to-br from-orange-100 to-rose-100/70",
-                "text-rose-950 shadow-sm",
+                "rounded-full border border-brand-tan/50",
+                "bg-features-icon",
+                "text-brand-deep-burgundy shadow-sm",
                 "transition-all duration-300",
-                "group-hover:scale-110 group-hover:border-amber-700/30",
-                "group-hover:bg-rose-950 group-hover:text-amber-100",
-                "group-hover:shadow-md group-hover:shadow-rose-950/15",
+                "group-hover:scale-110 group-hover:border-brand-tan/70",
+                "group-hover:bg-brand-deep-burgundy group-hover:text-footer-heading",
+                "group-hover:shadow-md group-hover:shadow-brand-deep-burgundy/15",
                 "sm:size-11 lg:size-12"
               )}
             >
@@ -142,9 +137,9 @@ export default function FeaturesSection() {
               <h3
                 className={cn(
                   "text-xs font-semibold capitalize leading-snug",
-                  "tracking-tight text-rose-950",
+                  "tracking-tight text-brand-deep-burgundy",
                   "transition-colors duration-300",
-                  "group-hover:text-amber-900",
+                  "group-hover:text-brand-tan",
                   "sm:text-sm"
                 )}
               >
@@ -167,7 +162,7 @@ export default function FeaturesSection() {
             {index !== features.length - 1 && (
               <span
                 aria-hidden="true"
-                className="absolute -right-3 top-1/2 hidden h-8 w-px -translate-y-1/2 bg-orange-200/80 lg:block"
+                className="absolute -right-3 top-1/2 hidden h-8 w-px -translate-y-1/2 bg-brand-tan/50 lg:block"
               />
             )}
           </article>

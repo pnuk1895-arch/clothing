@@ -1,7 +1,6 @@
-
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { cn } from "@/lib/utils";
 import {
   FaArrowRight,
@@ -10,9 +9,17 @@ import {
   FaShieldAlt,
   FaTshirt,
 } from "react-icons/fa";
-import "../../style/HomeStyle/BeTheFirstToKnow.css"
+import type { IconType } from "react-icons";
+import "../../style/HomeStyle/BeTheFirstToKnow.css";
 
-const benefits = [
+type Benefit = {
+  icon: IconType;
+  title: string;
+};
+
+type SubscriptionStatus = "idle" | "error" | "success";
+
+const benefits: Benefit[] = [
   {
     icon: FaShieldAlt,
     title: "Exclusive Offers",
@@ -28,10 +35,10 @@ const benefits = [
 ];
 
 export default function BeTheFirstToKnow() {
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle");
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+  const [status, setStatus] = useState<SubscriptionStatus>("idle");
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -56,7 +63,7 @@ export default function BeTheFirstToKnow() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!email.trim()) {
@@ -76,8 +83,8 @@ export default function BeTheFirstToKnow() {
       aria-labelledby="newsletter-title"
       className={cn(
         "newsletter-section relative isolate overflow-hidden",
-        "border-y border-[#9E6B4B]/30",
-        "text-[#F8E9D8]",
+        "border-y border-brand-tan/30",
+        "text-brand-light-Cream",
         "transition-colors duration-700"
       )}
     >
@@ -90,15 +97,15 @@ export default function BeTheFirstToKnow() {
       {/* Color overlay keeps text readable */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-r from-[#3B1019]/45 via-[#4B111E]/25 to-[#3B1019]/45"
+        className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-r from-header-burgundy/45 via-brand-deep-burgundy/25 to-header-burgundy/45"
       />
 
       <div
         className={cn(
-          "mx-auto grid w-full max-w-7xl items-center",
-          "gap-8 px-5 py-10 sm:px-8 sm:py-12",
+          "mx-auto grid w-[90%] max-w-content-area items-center",
+          "gap-8 py-10 sm:py-12",
           "lg:grid-cols-[1fr_1.2fr_0.8fr] lg:gap-10",
-          "xl:px-12 xl:py-14",
+          " xl:py-14",
           isVisible
             ? "newsletter-reveal newsletter-visible"
             : "newsletter-reveal"
@@ -106,22 +113,22 @@ export default function BeTheFirstToKnow() {
       >
         {/* Heading */}
         <div className="space-y-3 text-center lg:text-left">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#D6AA78]">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-tan">
             Join our community
           </p>
 
           <h2
             id="newsletter-title"
-            className="font-serif text-3xl leading-tight text-[#FFF3E6] sm:text-4xl"
+            className="font-serif text-3xl leading-tight text-brand-cream sm:text-4xl"
           >
             Be the First
             <br />
-            <span className="font-normal italic text-[#D9AE86]">
+            <span className="font-normal italic text-brand-tan">
               to Know
             </span>
           </h2>
 
-          <p className="mx-auto max-w-sm text-sm leading-6 text-[#F1DCCB]/85 lg:mx-0">
+          <p className="mx-auto max-w-sm text-sm leading-6 text-brand-beige/85 lg:mx-0">
             Discover new arrivals, exclusive offers, styling inspiration,
             and timeless pieces made for your special moments.
           </p>
@@ -133,10 +140,10 @@ export default function BeTheFirstToKnow() {
             onSubmit={handleSubmit}
             className={cn(
               "group flex flex-col gap-2 rounded-xl p-2",
-              "border border-[#D7B28A]/35 bg-[#FFF8F0]/10",
+              "border border-footer-gold/35 bg-brand-cream/10",
               "shadow-lg shadow-black/10 backdrop-blur-sm",
               "transition-all duration-300",
-              "focus-within:border-[#E7C49B]/80",
+              "focus-within:border-footer-gold/80",
               "focus-within:shadow-xl"
             )}
           >
@@ -159,7 +166,7 @@ export default function BeTheFirstToKnow() {
                 placeholder="Enter your email address"
                 className={cn(
                   "min-w-0 flex-1 bg-transparent px-3 py-3",
-                  "text-sm text-white placeholder:text-[#E8D0BE]/70",
+                  "text-sm text-white placeholder:text-brand-beige/70",
                   "outline-none"
                 )}
               />
@@ -168,14 +175,14 @@ export default function BeTheFirstToKnow() {
                 type="submit"
                 className={cn(
                   "inline-flex shrink-0 items-center justify-center gap-2",
-                  "rounded-lg bg-[#D7B28A] px-4 py-3",
-                  "text-xs font-semibold text-[#411520]",
+                  "rounded-lg bg-footer-button px-4 py-3",
+                  "text-xs font-semibold text-footer-button-text",
                   "transition-all duration-300",
-                  "hover:bg-[#F0D4B5] hover:shadow-lg",
+                  "hover:bg-footer-gold hover:shadow-lg",
                   "active:scale-95",
                   "focus-visible:outline-none focus-visible:ring-2",
-                  "focus-visible:ring-[#F0D4B5] focus-visible:ring-offset-2",
-                  "focus-visible:ring-offset-[#48111E]"
+                  "focus-visible:ring-footer-gold focus-visible:ring-offset-2",
+                  "focus-visible:ring-offset-brand-deep-burgundy"
                 )}
               >
                 <span>Subscribe</span>
@@ -193,10 +200,10 @@ export default function BeTheFirstToKnow() {
               "mt-3 flex min-h-5 items-center justify-center gap-2 text-xs",
               "lg:justify-start",
               status === "error"
-                ? "text-[#FFD1C9]"
+                ? "text-brand-cream"
                 : status === "success"
-                  ? "text-[#E6D0A9]"
-                  : "text-[#E8D0BE]/75"
+                  ? "text-footer-gold"
+                  : "text-brand-beige/75"
             )}
           >
             {status === "success" ? (
@@ -213,7 +220,7 @@ export default function BeTheFirstToKnow() {
         </div>
 
         {/* Member benefits */}
-        <div className="grid grid-cols-3 gap-3 border-t border-[#D7B28A]/20 pt-6 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
+        <div className="grid grid-cols-3 gap-3 border-t border-footer-gold/20 pt-6 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
           {benefits.map(({ icon: Icon, title }, index) => (
             <div
               key={title}
@@ -226,19 +233,19 @@ export default function BeTheFirstToKnow() {
               <span
                 className={cn(
                   "flex size-11 items-center justify-center rounded-full",
-                  "border border-[#D7B28A]/35 bg-[#FFF3E6]/10",
-                  "text-lg text-[#D7B28A]",
+                  "border border-footer-gold/35 bg-brand-cream/10",
+                  "text-lg text-footer-gold",
                   "transition-all duration-300",
-                  "group-hover/benefit:border-[#E8C69F]",
-                  "group-hover/benefit:bg-[#D7B28A]",
-                  "group-hover/benefit:text-[#48111E]",
+                  "group-hover/benefit:border-footer-gold",
+                  "group-hover/benefit:bg-footer-gold",
+                  "group-hover/benefit:text-brand-deep-burgundy",
                   "group-hover/benefit:shadow-lg"
                 )}
               >
                 <Icon aria-hidden="true" />
               </span>
 
-              <span className="text-xs leading-4 text-[#F6E4D4]">
+              <span className="text-xs leading-4 text-brand-light-Cream">
                 {title}
               </span>
             </div>

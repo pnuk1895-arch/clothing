@@ -10,7 +10,16 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const testimonials = [
+type Testimonial = {
+    name: string;
+    location: string;
+    occasion: string;
+    review: string;
+    image: string;
+    rating: number;
+};
+
+const testimonials: Testimonial[] = [
     {
         name: "Priya Mehta",
         location: "New Delhi, India",
@@ -71,7 +80,7 @@ const getVisibleCount = () => {
 };
 
 export default function WhatOurCustomersSay() {
-    const sectionRef = useRef(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
     const [visibleCount, setVisibleCount] = useState(3);
     const [activeIndex, setActiveIndex] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
@@ -142,10 +151,10 @@ export default function WhatOurCustomersSay() {
             {/* Soft overlay blends the artwork with adjacent sections */}
             <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 -z-10 bg-[#FBF5EF]/35"
+                className="pointer-events-none absolute inset-0 -z-10 bg-customer-overlay"
             />
 
-            <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
+            <div className="mx-auto w-[90%] max-w-content-area">
                 {/* Section heading and navigation */}
                 <div
                     className={cn(
@@ -157,22 +166,22 @@ export default function WhatOurCustomersSay() {
                     )}
                 >
                     <div className="max-w-2xl">
-                        <span className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#A7785D]">
+                        <span className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-brand-tan">
                             <Sparkles size={14} />
                             Real stories
                         </span>
 
                         <h2
                             id="customer-stories-title"
-                            className="font-serif text-3xl leading-tight text-[#33231F] sm:text-4xl lg:text-5xl"
+                            className="font-serif text-3xl leading-tight text-brand-heading-dark sm:text-4xl lg:text-5xl"
                         >
                             What Our{" "}
-                            <span className="italic text-[#79283B]">
+                            <span className="italic text-brand-rosewood">
                                 Customers Say
                             </span>
                         </h2>
 
-                        <p className="mt-3 max-w-xl text-sm leading-6 text-[#796A60] sm:text-base">
+                        <p className="mt-3 max-w-xl text-sm leading-6 text-brand-muted-rosewood sm:text-base">
                             Real experiences, thoughtful craftsmanship, and
                             unforgettable moments in every outfit.
                         </p>
@@ -186,12 +195,12 @@ export default function WhatOurCustomersSay() {
                             aria-label="Previous customer reviews"
                             className={cn(
                                 "group flex size-10 items-center justify-center rounded-full",
-                                "border border-[#DCC8B8] bg-[#FFF9F3]/80 text-[#75432F]",
+                                "border border-brand-beige bg-customer-control text-brand-Brown",
                                 "transition-all duration-300",
-                                "hover:-translate-x-1 hover:border-[#79283B]",
-                                "hover:bg-[#79283B] hover:text-white hover:shadow-lg",
+                                "hover:-translate-x-1 hover:border-brand-rosewood",
+                                "hover:bg-brand-rosewood hover:text-white hover:shadow-lg",
                                 "focus-visible:outline-none focus-visible:ring-2",
-                                "focus-visible:ring-[#79283B] focus-visible:ring-offset-2"
+                                "focus-visible:ring-brand-rosewood focus-visible:ring-offset-2"
                             )}
                         >
                             <ArrowLeft
@@ -206,12 +215,12 @@ export default function WhatOurCustomersSay() {
                             aria-label="Next customer reviews"
                             className={cn(
                                 "group flex size-10 items-center justify-center rounded-full",
-                                "border border-[#DCC8B8] bg-[#FFF9F3]/80 text-[#75432F]",
+                                "border border-brand-beige bg-customer-control text-brand-Brown",
                                 "transition-all duration-300",
-                                "hover:translate-x-1 hover:border-[#79283B]",
-                                "hover:bg-[#79283B] hover:text-white hover:shadow-lg",
+                                "hover:translate-x-1 hover:border-brand-rosewood",
+                                "hover:bg-brand-rosewood hover:text-white hover:shadow-lg",
                                 "focus-visible:outline-none focus-visible:ring-2",
-                                "focus-visible:ring-[#79283B] focus-visible:ring-offset-2"
+                                "focus-visible:ring-brand-rosewood focus-visible:ring-offset-2"
                             )}
                         >
                             <ArrowRight
@@ -236,11 +245,11 @@ export default function WhatOurCustomersSay() {
                                 className={cn(
                                     "group relative flex shrink-0 flex-col",
                                     "w-full min-w-0 pr-0 sm:pr-0",
-                                    "rounded-2xl border border-[#E9D9CC]",
-                                    "bg-[#FFFAF5]/90 p-5 shadow-[0_5px_22px_rgba(92,55,39,0.06)]",
+                                    "rounded-2xl border border-customer-card-border",
+                                    "bg-customer-card p-5 shadow-customer-card",
                                     "transition-all duration-500",
-                                    "hover:-translate-y-2 hover:border-[#D6B39C]",
-                                    "hover:bg-white hover:shadow-[0_18px_40px_rgba(92,55,39,0.12)]",
+                                    "hover:-translate-y-2 hover:border-brand-tan",
+                                    "hover:bg-brand-cream hover:shadow-customer-card-hover",
                                     "sm:p-6",
                                     isVisible
                                         ? "translate-y-0 opacity-100"
@@ -257,7 +266,7 @@ export default function WhatOurCustomersSay() {
                                 {/* Decorative quote */}
                                 <Quote
                                     aria-hidden="true"
-                                    className="absolute right-5 top-5 size-9 rotate-180 text-[#EBDCCF]/80 transition-transform duration-500 group-hover:scale-110 group-hover:text-[#D8B6A0]"
+                                    className="absolute right-5 top-5 size-9 rotate-180 text-customer-quote transition-transform duration-500 group-hover:scale-110 group-hover:text-brand-beige"
                                     strokeWidth={1.5}
                                 />
 
@@ -273,25 +282,25 @@ export default function WhatOurCustomersSay() {
                                                 size={15}
                                                 fill="currentColor"
                                                 strokeWidth={1}
-                                                className="text-[#C58A42]"
+                                                className="text-customer-star"
                                             />
                                         )
                                     )}
                                 </div>
 
-                                <span className="mb-3 w-fit rounded-full bg-[#F3E5D9] px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#8C5845]">
+                                <span className="mb-3 w-fit rounded-full bg-brand-light-Cream px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-muted-rosewood">
                                     {testimonial.occasion}
                                 </span>
 
-                                <blockquote className="flex-1 text-sm leading-7 text-[#66574E] sm:text-base">
+                                <blockquote className="flex-1 text-sm leading-7 text-brand-Brown sm:text-base">
                                     “{testimonial.review}”
                                 </blockquote>
 
-                                <div className="my-5 h-px bg-linear-to-r from-[#E7D2C1] via-[#E7D2C1]/50 to-transparent" />
+                                <div className="my-5 h-px bg-linear-to-r from-brand-beige via-brand-beige/50 to-transparent" />
 
                                 {/* Customer profile */}
                                 <div className="flex items-center gap-3">
-                                    <div className="size-12 shrink-0 overflow-hidden rounded-full border-2 border-[#E8D0BD] p-0.5">
+                                    <div className="size-12 shrink-0 overflow-hidden rounded-full border-2 border-brand-beige p-0.5">
                                         <img
                                             src={testimonial.image}
                                             alt=""
@@ -301,20 +310,20 @@ export default function WhatOurCustomersSay() {
                                     </div>
 
                                     <div className="min-w-0">
-                                        <h3 className="truncate text-sm font-semibold text-[#392822]">
+                                        <h3 className="truncate text-sm font-semibold text-brand-heading-dark">
                                             {testimonial.name}
                                         </h3>
-                                        <p className="mt-1 text-xs text-[#9A8374]">
+                                        <p className="mt-1 text-xs text-brand-muted-rosewood">
                                             Verified customer
                                         </p>
-                                        <p className="mt-1 truncate text-xs text-[#9A8374]">
+                                        <p className="mt-1 truncate text-xs text-brand-muted-rosewood">
                                             {testimonial.location}
                                         </p>
                                     </div>
 
                                     <Sparkles
                                         size={17}
-                                        className="ml-auto shrink-0 text-[#B78B70] opacity-60 transition-all duration-300 group-hover:rotate-12 group-hover:opacity-100"
+                                        className="ml-auto shrink-0 text-brand-tan opacity-60 transition-all duration-300 group-hover:rotate-12 group-hover:opacity-100"
                                     />
                                 </div>
                             </article>
@@ -334,14 +343,14 @@ export default function WhatOurCustomersSay() {
                             className={cn(
                                 "h-2 rounded-full transition-all duration-300",
                                 activeIndex === index
-                                    ? "w-8 bg-[#79283B]"
-                                    : "w-2 bg-[#DCC8B8] hover:bg-[#A7785D]"
+                                    ? "w-8 bg-brand-rosewood"
+                                    : "w-2 bg-brand-beige hover:bg-brand-tan"
                             )}
                         />
                     ))}
                 </div>
 
-                <p className="mt-4 text-center text-xs tracking-wide text-[#9A8374]">
+                <p className="mt-4 text-center text-xs tracking-wide text-brand-muted-rosewood">
                     Crafted with care. Worn with confidence.
                 </p>
             </div>

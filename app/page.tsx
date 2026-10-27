@@ -21,16 +21,16 @@ export default function HomePage() {
                 <FeaturesSection/>
                 <FindPerfectLook/>
                 <CollectionsSection/>
-                {/* <OccasionSection /> */}
-                {/* <BestSellingOutfits/> */}
-                {/* <MadeJustForYou/> */}
-                {/* <HowItWorks/> */}
-                {/* <WhatOurCustomerSay/> */}
-                {/* <RealFashionMoments/> */}
-                {/* <BeTheFirstToKnow/> */}
+                <OccasionSection />
+                <BestSellingOutfits/>
+                <MadeJustForYou/>
+                <HowItWorks/>
+                <WhatOurCustomerSay/>
+                <RealFashionMoments/>
+                <BeTheFirstToKnow/>
             </main>
             {/* <Footer/> */}
-            {/* <Footer/> */}
+            <Footer/>
         </>
     )
 }

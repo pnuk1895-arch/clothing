@@ -15,8 +15,8 @@ import { cn } from "@/lib/utils";
 const slides = [
     {
         eyebrow: "TRADITION IN EVERY THREAD",
-        title: "Celebrate Every Occasion",
-        emphasis: "in Style",
+        title: `Celebrate Every `,
+        emphasis: "Occasion in Style",
         description:
             "Explore our exquisite collection of ethnic and contemporary outfits crafted for your most memorable moments.",
         image: "/Images/HeroImages/heroImage.webp",
@@ -53,9 +53,9 @@ const stats = [
 ];
 
 export default function HeroSection() {
-    const sectionRef = useRef(null);
-    const [activeSlide, setActiveSlide] = useState(0);
-    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement | null>(null);
+    const [activeSlide, setActiveSlide] = useState<number>(0);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     useEffect(() => {
         const element = sectionRef.current;
@@ -76,7 +76,7 @@ export default function HeroSection() {
 
     const slide = slides[activeSlide];
 
-    const goToSlide = (direction) => {
+    const goToSlide = (direction: number) => {
         setActiveSlide((current) =>
             (current + direction + slides.length) % slides.length
         );
@@ -88,7 +88,7 @@ export default function HeroSection() {
             aria-label="SILAAH occasion wear collection"
             className={cn(
                 "relative isolate w-full overflow-hidden",
-                "min-h-172.5 bg-[#FAF7F2]",
+                "min-h-172.5 bg-brand-cream",
                 "sm:min-h-185 lg:min-h-190 lg:h-screen",
                 "flex items-center"
             )}
@@ -107,7 +107,8 @@ export default function HeroSection() {
                         "object-cover object-[65%_center]",
                         "transition-transform duration-1000 ease-out",
                         "animate-[heroImageIn_900ms_ease-out_both]",
-                        "max-lg:object-[60%_center]",
+                        "max-lg:object-[40%_center]",
+                        "max-md:object-[60%_center]"
                     )}
                 />
             </div>
@@ -117,35 +118,26 @@ export default function HeroSection() {
                 aria-hidden="true"
                 className={cn(
                     "absolute inset-0 -z-10",
-                    "bg-linear-to-r",
-                    "from-[#FAF7F2]/98 from-0%",
-                    "via-[#FAF7F2]/90 via-35%",
-                    "via-[#FAF7F2]/55 via-55%",
-                    "to-transparent to-80%",
-                    "max-lg:from-[#FAF7F2]/95",
-                    "max-lg:via-[#FAF7F2]/65",
-                    "max-lg:to-transparent",
-                    "max-md:bg-linear-to-r",
-                    "max-md:from-[#FAF7F2]/85 from-0%",
-                    "max-md:via-[#FAF7F2]/40 via-20%",
-                    "max-md:to-transparent to-26%"
+                    // "bg-hero-overlay",
+                    "max-lg:bg-hero-overlay-tablet",
+                    "max-md:bg-hero-overlay-mobile"
                 )}
             />
             <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-32 bg-linear-to-b from-transparent via-[#FAF7F2]/70 to-[#FAF7F2]"
+                className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-hero-bottom-fade"
             />
 
-            {/* Soft burgundy accent on the right */}
+            {/* Soft burgundy accent on the right
             <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-24 bg-linear-to-l from-[#5A1527]/15 to-transparent lg:block"
-            />
+                className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-24 bg-hero-right-accent lg:block"
+            /> */}
 
             {/* Decorative side detail */}
             <div
                 aria-hidden="true"
-                className="pointer-events-none absolute left-0 top-0 -z-10 hidden h-full w-20 bg-linear-to-r from-[#DCC7B2]/30 to-transparent xl:block"
+                className="pointer-events-none absolute left-0 top-0 -z-10 hidden h-full w-20 bg-hero-left-accent xl:block"
             />
 
             <div className="mx-auto w-[90%] max-w-content-area pb-12 pt-28 sm:pb-14 sm:pt-32 lg:pb-20 lg:pt-36">
@@ -166,18 +158,18 @@ export default function HeroSection() {
                                 : "translate-y-6 opacity-0"
                         )}
                     >
-                        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#9A7359] sm:text-xs">
+                        <p className="mb-5 inline-flex max-w-full items-center rounded-xl border border-brand-tan/35 bg-linear-to-r from-brand-cream/95 via-brand-light-cream/85 to-brand-beige/55 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-brown shadow-brand-soft backdrop-blur-xl sm:mb-6 sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-[0.28em]">
                             {slide.eyebrow}
                         </p>
 
-                        <h1 className="font-serif text-4xl leading-[1.08] tracking-tight text-[#2E2A24] sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl">
+                        <h1 className="font-serif text-4xl leading-[1.08] tracking-tight text-brand-heading-dark sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl">
                             {slide.title}
-                            <span className="mt-1 block italic text-[#6B2035]">
+                            <span className="mt-1 block italic text-brand-rosewood">
                                 {slide.emphasis}
                             </span>
                         </h1>
 
-                        <p className="mt-5 max-w-md text-sm leading-7 text-[#51463D] sm:text-base font-semibold sm:leading-8">
+                        <p className="mt-5 max-w-md text-sm leading-7 text-brand-heading-dark/85 sm:text-base font-semibold sm:leading-8">
                             {slide.description}
                         </p>
 
@@ -187,12 +179,12 @@ export default function HeroSection() {
                                 href="/collections"
                                 className={cn(
                                     "group inline-flex min-h-11 items-center justify-center gap-2",
-                                    "bg-[#5A1527] px-5 py-3 text-xs font-medium text-white",
+                                    "bg-header-burgundy px-5 py-3 text-xs font-medium text-brand-cream",
                                     "transition-all duration-300",
-                                    "hover:-translate-y-0.5 hover:bg-[#74223A]",
-                                    "hover:shadow-lg hover:shadow-[#5A1527]/20",
+                                    "hover:-translate-y-0.5 hover:bg-brand-rosewood",
+                                    "hover:shadow-lg hover:shadow-header-burgundy/20",
                                     "focus-visible:outline-none focus-visible:ring-2",
-                                    "focus-visible:ring-[#B9987A] focus-visible:ring-offset-2"
+                                    "focus-visible:ring-brand-tan focus-visible:ring-offset-2"
                                 )}
                             >
                                 Shop Collection
@@ -206,13 +198,13 @@ export default function HeroSection() {
                                 href="/occasion-wear"
                                 className={cn(
                                     "group inline-flex min-h-11 items-center justify-center gap-2",
-                                    "border border-[#8C5B58]/70 bg-[#FAF7F2]/65",
-                                    "px-5 py-3 text-xs font-medium text-[#5A1527]",
+                                    "border border-brand-muted-rosewood/70 bg-brand-cream/75",
+                                    "px-5 py-3 text-xs font-medium text-header-burgundy",
                                     "backdrop-blur-sm transition-all duration-300",
-                                    "hover:-translate-y-0.5 hover:border-[#5A1527]",
-                                    "hover:bg-[#5A1527] hover:text-white",
+                                    "hover:-translate-y-0.5 hover:border-header-burgundy",
+                                    "hover:bg-header-burgundy hover:text-brand-cream",
                                     "focus-visible:outline-none focus-visible:ring-2",
-                                    "focus-visible:ring-[#B9987A] focus-visible:ring-offset-2"
+                                    "focus-visible:ring-brand-tan focus-visible:ring-offset-2"
                                 )}
                             >
                                 Explore Occasion
@@ -224,7 +216,7 @@ export default function HeroSection() {
                         </div>
 
                         {/* Trust statistics */}
-                        <div className="mt-9 grid max-w-lg grid-cols-2 gap-x-5 gap-y-5 border-t border-[#B9987A]/35 pt-5 sm:grid-cols-4 sm:gap-x-4">
+                        <div className="mt-9 grid max-w-lg grid-cols-2 gap-x-5 gap-y-5 border-t border-brand-tan/35 pt-5 sm:grid-cols-4 sm:gap-x-4">
                             {stats.map((stat, index) => (
                                 <div
                                     key={stat.label}
@@ -236,7 +228,7 @@ export default function HeroSection() {
                                     )}
                                     style={{ transitionDelay: `${index * 100}ms` }}
                                 >
-                                    <div className="flex items-center gap-1 text-base font-semibold text-[#6B2035] sm:text-lg">
+                                    <div className="flex items-center gap-1 text-base font-semibold text-brand-rosewood sm:text-lg">
                                         {stat.value}
                                         {stat.rating && (
                                             <Star
@@ -246,7 +238,7 @@ export default function HeroSection() {
                                             />
                                         )}
                                     </div>
-                                    <p className="mt-1 text-[10px] leading-4 text-[#76665A] sm:text-xs">
+                                    <p className="mt-1 text-[10px] leading-4 text-brand-brown/85 sm:text-xs">
                                         {stat.label}
                                     </p>
                                 </div>
@@ -262,7 +254,7 @@ export default function HeroSection() {
                                 "mb-20 mr-1 max-w-32 text-right",
                                 "animate-[heroTextIn_700ms_ease-out_both]",
                                 "text-xs font-bold uppercase leading-6 tracking-[0.18em]",
-                                "bg-linear-to-r from-[#2E2A24]/60 via-[#2E2A24]/70 to-[#2E2A24]/80",
+                                "bg-linear-to-r from-brand-heading-dark/60 via-brand-heading-dark/70 to-brand-heading-dark/80",
                                 "bg-clip-text text-transparent"
                             )}
                         >
@@ -276,10 +268,10 @@ export default function HeroSection() {
                                 onClick={() => goToSlide(-1)}
                                 className={cn(
                                     "flex size-10 items-center justify-center rounded-full",
-                                    "border border-[#DCC7B2] bg-[#FAF7F2]/90 text-[#6B2035]",
+                                    "border border-brand-beige bg-brand-cream/90 text-brand-rosewood",
                                     "transition-all duration-300",
-                                    "hover:scale-105 hover:bg-[#5A1527] hover:text-white",
-                                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B9987A]"
+                                    "hover:scale-105 hover:bg-header-burgundy hover:text-brand-cream",
+                                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-tan"
                                 )}
                             >
                                 <ArrowLeft size={17} />
@@ -296,8 +288,8 @@ export default function HeroSection() {
                                         "relative size-11 overflow-hidden rounded-full border-2",
                                         "transition-all duration-300 hover:scale-105",
                                         activeSlide === index
-                                            ? "border-[#6B2035] ring-2 ring-[#FAF7F2]"
-                                            : "border-[#FAF7F2]/80 opacity-70 hover:opacity-100"
+                                            ? "border-brand-rosewood ring-2 ring-brand-cream"
+                                            : "border-brand-cream/80 opacity-70 hover:opacity-100"
                                     )}
                                 >
                                     <Image
@@ -316,10 +308,10 @@ export default function HeroSection() {
                                 onClick={() => goToSlide(1)}
                                 className={cn(
                                     "flex size-10 items-center justify-center rounded-full",
-                                    "border border-[#DCC7B2] bg-[#FAF7F2]/90 text-[#6B2035]",
+                                    "border border-brand-beige bg-brand-cream/90 text-brand-rosewood",
                                     "transition-all duration-300",
-                                    "hover:scale-105 hover:bg-[#5A1527] hover:text-white",
-                                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B9987A]"
+                                    "hover:scale-105 hover:bg-header-burgundy hover:text-brand-cream",
+                                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-tan"
                                 )}
                             >
                                 <ArrowRight size={17} />
@@ -340,8 +332,8 @@ export default function HeroSection() {
                                     className={cn(
                                         "h-1.5 rounded-full transition-all duration-300",
                                         activeSlide === index
-                                            ? "w-8 bg-[#6B2035]"
-                                            : "w-3 bg-[#B9987A]/60"
+                                            ? "w-8 bg-brand-rosewood"
+                                            : "w-3 bg-brand-tan/60"
                                     )}
                                 />
                             ))}
@@ -352,7 +344,7 @@ export default function HeroSection() {
                                 type="button"
                                 aria-label="Previous hero slide"
                                 onClick={() => goToSlide(-1)}
-                                className="flex size-9 items-center justify-center rounded-full border border-[#DCC7B2] bg-[#FAF7F2] text-[#6B2035] transition hover:bg-[#5A1527] hover:text-white"
+                                className="flex size-9 items-center justify-center rounded-full border border-brand-beige bg-brand-cream text-brand-rosewood transition hover:bg-header-burgundy hover:text-brand-cream"
                             >
                                 <ArrowLeft size={16} />
                             </button>
@@ -360,7 +352,7 @@ export default function HeroSection() {
                                 type="button"
                                 aria-label="Next hero slide"
                                 onClick={() => goToSlide(1)}
-                                className="flex size-9 items-center justify-center rounded-full border border-[#DCC7B2] bg-[#FAF7F2] text-[#6B2035] transition hover:bg-[#5A1527] hover:text-white"
+                                className="flex size-9 items-center justify-center rounded-full border border-brand-beige bg-brand-cream text-brand-rosewood transition hover:bg-header-burgundy hover:text-brand-cream"
                             >
                                 <ArrowRight size={16} />
                             </button>

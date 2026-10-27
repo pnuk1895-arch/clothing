@@ -1,7 +1,9 @@
 import { cn } from "@/lib/utils";
 
-export default function title({ SectionDetail }: { SectionDetail: {
-    TopHeading: string ; visible: boolean ; MainContent: string;
+export default function Title({ SectionDetail }: { SectionDetail: {
+    TopHeading: string ;
+    visible: boolean ;
+    MainContent: string;
 } }) {
     return (
         <div
