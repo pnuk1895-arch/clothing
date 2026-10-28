@@ -1,41 +1,38 @@
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-export default function Title({ SectionDetail }: { SectionDetail: {
-    TopHeading: string ;
-    visible: boolean ;
-    MainContent: string;
-} }) {
+export default function Title({ SectionDetail }: {
+    SectionDetail: {
+        TopHeading: string;
+        MainTitle: {
+            First: string;
+            Second?: string;
+        }
+        MainContent: string;
+    }
+}) {
     return (
-        <div
-            className={cn(
-                "mb-7 flex flex-col justify-between gap-4 sm:mb-9",
-                "sm:flex-row sm:items-end",
-                "transition-all duration-700",
-                SectionDetail.visible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-6 opacity-0"
-            )}
-        >
-            <div>
-                <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.28em] text-[#9B7057] sm:text-[10px]">
-                    {SectionDetail.TopHeading}
-                </p>
+        
+            <div className="max-w-2xl">
+                <span className="mb-2 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted-rosewood sm:text-[11px]">
+                    <span className="h-px w-7 bg-brand-tan" />
+                    {SectionDetail?.TopHeading}
+                </span>
 
                 <h2
-                    id="collections-heading"
-                    className="font-serif text-3xl leading-tight tracking-[-0.035em] text-[#2E2A24] sm:text-4xl lg:text-5xl"
+                    id="perfect-look-heading"
+                    className="font-serif text-3xl font-medium leading-tight tracking-[-0.035em] text-brand-heading-dark sm:text-4xl lg:text-[46px]"
                 >
-                    Find Your
-                    <span className="ml-2 italic text-[#7A2638]">
-                        Signature Style
+                    {SectionDetail.MainTitle?.First}
+                    <span className="italic text-brand-rosewood">
+                        {SectionDetail?.MainTitle?.Second}
                     </span>
                 </h2>
 
-                <p className="mt-3 max-w-xl text-xs leading-6 text-[#6B5B44]/90 sm:text-sm">
-                    {SectionDetail.MainContent}
+                <p className="mt-2 max-w-xl text-xs leading-6 text-brand-Brown/80 sm:text-sm">
+                    {SectionDetail?.MainContent}
                 </p>
             </div>
-
-        </div>
     )
 }

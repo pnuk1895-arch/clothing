@@ -39,8 +39,19 @@ const tailoringServices = [
     },
 ];
 
+const SectionDetail = {
+    TopHeading: "Custom Tailoring",
+    MainTitle: {
+        First: `Made Just ${" "}`,
+        Seccond: "for You"
+    },
+    MainContent: ` From fabric selection to final fitting, our expert stylists
+                                and tailors ensure a perfect outfit that matches your style
+                                and occasion.`
+}
+
 export default function MadeJustForYou() {
-    const sectionRef = useRef < HTMLElement | null > (null);
+    const sectionRef = useRef<HTMLElement | null>(null);
     const [visible, setVisible] = useState(false);
     const [showStory, setShowStory] = useState(false);
 

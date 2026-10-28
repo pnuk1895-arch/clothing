@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import "../../style/HomeStyle/BeTheFirstToKnow.css";
+import Title from "../ui/title";
 
 type Benefit = {
   icon: IconType;
@@ -33,6 +34,7 @@ const benefits: Benefit[] = [
     title: "Fashion Guides",
   },
 ];
+
 
 export default function BeTheFirstToKnow() {
   const sectionRef = useRef<HTMLElement | null>(null);

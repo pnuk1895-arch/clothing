@@ -17,20 +17,20 @@ export default function HomePage() {
         <>
             <Header />
             <main>
-                <HeroSection/>
-                <FeaturesSection/>
-                <FindPerfectLook/>
-                <CollectionsSection/>
+                <HeroSection />
+                <FeaturesSection />
+                <FindPerfectLook />
+                <CollectionsSection />
                 <OccasionSection />
-                <BestSellingOutfits/>
-                <MadeJustForYou/>
-                <HowItWorks/>
-                <WhatOurCustomerSay/>
+                <BestSellingOutfits />
+                <MadeJustForYou />
+                <HowItWorks />
+                <WhatOurCustomerSay />
                 <RealFashionMoments/>
                 <BeTheFirstToKnow/>
             </main>
             {/* <Footer/> */}
-            <Footer/>
+            <Footer />
         </>
     )
 }

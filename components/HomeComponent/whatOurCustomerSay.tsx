@@ -9,6 +9,7 @@ import {
     Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Title from "../ui/title";
 
 type Testimonial = {
     name: string;
@@ -79,11 +80,21 @@ const getVisibleCount = () => {
     return 3;
 };
 
+const SectionDetail={
+    TopHeading:"Real stories",
+    MainTitle:{
+        First:`What Our ${" "}`,
+        Second:"Customers Say"
+    },
+    MainContent:`Real experiences, thoughtful craftsmanship, and
+                            unforgettable moments in every outfit.`,
+}
+
 export default function WhatOurCustomersSay() {
     const sectionRef = useRef<HTMLElement | null>(null);
     const [visibleCount, setVisibleCount] = useState(3);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [isVisible, setIsVisible] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
         const updateLayout = () => {
@@ -110,7 +121,7 @@ export default function WhatOurCustomersSay() {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    setIsVisible(true);
+                    setVisible(true);
                     observer.unobserve(element);
                 }
             },
@@ -160,31 +171,13 @@ export default function WhatOurCustomersSay() {
                     className={cn(
                         "mb-8 flex items-end justify-between gap-5 sm:mb-10",
                         "transition-all duration-1000",
-                        isVisible
+                        visible
                             ? "translate-y-0 opacity-100"
                             : "translate-y-8 opacity-0"
                     )}
                 >
                     <div className="max-w-2xl">
-                        <span className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-brand-tan">
-                            <Sparkles size={14} />
-                            Real stories
-                        </span>
-
-                        <h2
-                            id="customer-stories-title"
-                            className="font-serif text-3xl leading-tight text-brand-heading-dark sm:text-4xl lg:text-5xl"
-                        >
-                            What Our{" "}
-                            <span className="italic text-brand-rosewood">
-                                Customers Say
-                            </span>
-                        </h2>
-
-                        <p className="mt-3 max-w-xl text-sm leading-6 text-brand-muted-rosewood sm:text-base">
-                            Real experiences, thoughtful craftsmanship, and
-                            unforgettable moments in every outfit.
-                        </p>
+                        <Title SectionDetail={SectionDetail} />
                     </div>
 
                     {/* Matching circular left/right controls */}
@@ -251,14 +244,14 @@ export default function WhatOurCustomersSay() {
                                     "hover:-translate-y-2 hover:border-brand-tan",
                                     "hover:bg-brand-cream hover:shadow-customer-card-hover",
                                     "sm:p-6",
-                                    isVisible
+                                    visible
                                         ? "translate-y-0 opacity-100"
                                         : "translate-y-10 opacity-0"
                                 )}
                                 style={{
                                     width: `calc((100% - ${(visibleCount - 1) * 16}px) / ${visibleCount})`,
                                     marginRight: index === testimonials.length - 1 ? 0 : 16,
-                                    transitionDelay: isVisible
+                                    transitionDelay: visible
                                         ? `${(index % visibleCount) * 120}ms`
                                         : "0ms",
                                 }}

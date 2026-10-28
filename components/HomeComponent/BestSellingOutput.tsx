@@ -123,6 +123,7 @@ const formatPrice = (price: number) =>
         maximumFractionDigits: 0,
     }).format(price);
 
+
 export default function BestSellingOutfits() {
     const sectionRef = useRef<HTMLElement | null>(null);
     const sliderRef = useRef<HTMLDivElement | null>(null);
@@ -230,7 +231,7 @@ export default function BestSellingOutfits() {
                 {/* Heading and carousel controls */}
                 <div
                     className={cn(
-                        "flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between",
+                        "flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between",
                         "transition-all duration-700 ease-out motion-reduce:transition-none",
                         visible
                             ? "translate-y-0 opacity-100"

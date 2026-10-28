@@ -9,12 +9,13 @@ import {
     FiChevronRight,
 } from "react-icons/fi";
 import {
-    GiDiamondRing,
-    GiDress,
     GiFlowerEmblem,
-    GiHeartNecklace,
 } from "react-icons/gi";
 import { cn } from "@/lib/utils";
+import Title from "../ui/title";
+import Image from "next/image";
+import BottomEditorial from "../ui/BottomEditorial";
+import ViewAll from "../ui/viewAll"
 
 const occasions = [
     {
@@ -67,11 +68,30 @@ const occasions = [
     },
 ];
 
+const SectionDetail = {
+    TopHeading: "Shop by occasion",
+    MainTitle: {
+        First: `Find Your ${" "}`,
+        Second: "Perfect Look",
+    },
+    MainContent: "Outfits curated for every celebration, from intimate gatherings to grand occasions.",
+    ViewTitle: "View All Occasions",
+}
+
+const BottomDetail = {
+    icon: true,
+    IconType: GiFlowerEmblem,
+    Text: "Crafted for your moments"
+}
+
 export default function FindPerfectLook() {
     const sectionRef = useRef<HTMLElement | null>(null);
     const trackRef = useRef<HTMLDivElement | null>(null);
-    const [isVisible, setIsVisible] = useState(false);
+    const [visible, setVisible] = useState(false);
 
+
+
+    //  interaction  observation
     useEffect(() => {
         const section = sectionRef.current;
 
@@ -80,7 +100,7 @@ export default function FindPerfectLook() {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    setIsVisible(true);
+                    setVisible(true);
                     observer.unobserve(entry.target);
                 }
             },
@@ -101,7 +121,6 @@ export default function FindPerfectLook() {
         const track = trackRef.current;
         const card = track.querySelector("[data-occasion-card]");
         const distance = card ? card.getBoundingClientRect().width + 20 : 280;
-
         track.scrollBy({
             left: direction * distance,
             behavior: "smooth",
@@ -148,45 +167,17 @@ export default function FindPerfectLook() {
                 {/* Section heading */}
                 <div
                     className={cn(
-                        "mb-7 flex flex-col justify-between gap-5 sm:mb-9 sm:flex-row sm:items-end",
+                        "mb-7 flex flex-col justify-between h-full gap-5 sm:mb-9 md:flex-row md:items-end",
                         "transition-all duration-700 ease-out",
-                        isVisible
+                        visible
                             ? "translate-y-0 opacity-100"
                             : "translate-y-8 opacity-0"
                     )}
                 >
-                    <div className="max-w-2xl">
-                        <span className="mb-2 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted-rosewood sm:text-[11px]">
-                            <span className="h-px w-7 bg-brand-tan" />
-                            Shop by occasion
-                        </span>
-
-                        <h2
-                            id="perfect-look-heading"
-                            className="font-serif text-3xl font-medium leading-tight tracking-[-0.035em] text-brand-heading-dark sm:text-4xl lg:text-[46px]"
-                        >
-                            Find Your{" "}
-                            <span className="italic text-brand-rosewood">
-                                Perfect Look
-                            </span>
-                        </h2>
-
-                        <p className="mt-2 max-w-xl text-xs leading-6 text-brand-Brown/80 sm:text-sm">
-                            Outfits curated for every celebration, from intimate
-                            gatherings to grand occasions.
-                        </p>
-                    </div>
-
-                    <div className="flex items-center justify-between gap-4 sm:justify-end">
-                        <Link
-                            href="/collections"
-                            className="group inline-flex items-center gap-2 text-xs font-semibold text-brand-rosewood transition-colors hover:text-brand-heading-dark sm:text-sm"
-                        >
-                            View All Occasions
-                            <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-                        </Link>
-
-                        <div className="flex items-center gap-2">
+                    <Title SectionDetail={SectionDetail} />
+                    <div className="flex items-center justify-between gap-4 md:flex-col md:items-end lg:self-center md:self-stretch md:pt-5">
+                        <ViewAll link="/" Text="View All Occasions" />
+                        <div className="flex items-center gap-2 lg:hidden">
                             <button
                                 type="button"
                                 aria-label="Scroll occasions left"
@@ -235,7 +226,7 @@ export default function FindPerfectLook() {
                                     "transition-all duration-700 ease-out",
                                     "hover:-translate-y-2 hover:border-brand-tan/70",
                                     "hover:shadow-brand-soft",
-                                    isVisible
+                                    visible
                                         ? "translate-y-0 opacity-100"
                                         : "translate-y-10 opacity-0"
                                 )}
@@ -245,9 +236,11 @@ export default function FindPerfectLook() {
                             >
                                 {/* Image */}
                                 <div className="relative aspect-[0.79] overflow-hidden rounded-t-[999px] bg-brand-soft-card-Beige">
-                                    <img
+                                    <Image
                                         src={occasion.image}
                                         alt={`${occasion.title} collection`}
+                                        fill
+                                        sizes="90vw"
                                         loading="lazy"
                                         className="size-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
                                     />
@@ -303,21 +296,7 @@ export default function FindPerfectLook() {
                     })}
                 </div>
 
-                {/* Bottom editorial accent */}
-                <div
-                    className={cn(
-                        "mt-4 flex items-center justify-center gap-3 sm:mt-6",
-                        "transition-all duration-700 delay-500",
-                        isVisible ? "opacity-100" : "opacity-0"
-                    )}
-                >
-                    <span className="h-px w-12 bg-linear-to-r from-transparent to-brand-tan/70" />
-                    <GiFlowerEmblem className="text-brand-tan" size={15} />
-                    <p className="text-[9px] font-medium uppercase tracking-[0.25em] text-brand-muted-rosewood">
-                        Crafted for your moments
-                    </p>
-                    <span className="h-px w-12 bg-linear-to-l from-transparent to-brand-tan/70" />
-                </div>
+                <BottomEditorial BottomDetail={{ ...BottomDetail, visible }} />
             </div>
         </section>
     );

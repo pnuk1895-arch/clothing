@@ -13,6 +13,8 @@ import {
     FiCalendar,
 } from "react-icons/fi";
 import { cn } from "@/lib/utils";
+import Title from "../ui/title";
+import BottomEditorial from "../ui/BottomEditorial";
 
 const services = [
     {
@@ -44,6 +46,21 @@ const services = [
         href: "/services/personal-consultation",
     },
 ];
+
+const SectionDetail = {
+    TopHeading: "Your Occasions, Our Expertise",
+    MainTitle: {
+        First: `Occasion ${" "}`,
+        Second: "Services",
+    },
+    visible: "",
+    MainContent: `From weddings to festive gatherings, we provide complete
+                            styling solutions to make your moments truly special.`
+}
+
+const BottomDetail = {
+        Text:"Thoughtfully styled. Beautifully remembered."
+}
 
 export default function OccasionServices() {
     const sectionRef = useRef<HTMLElement | null>(null);
@@ -102,22 +119,9 @@ export default function OccasionServices() {
                                 : "translate-y-8 opacity-0"
                         )}
                     >
-                        <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.28em] text-brand-tan sm:text-[10px]">
-                            Your Occasions, Our Expertise
-                        </p>
+                        {/* heading  */}
+                        <Title SectionDetail={SectionDetail} />
 
-                        <h2
-                            id="occasion-services-heading"
-                            className="font-serif text-3xl leading-tight tracking-tight text-brand-heading-dark sm:text-4xl lg:text-5xl"
-                        >
-                            Occasion{" "}
-                            <span className="italic text-brand-rosewood">Services</span>
-                        </h2>
-
-                        <p className="mt-3 max-w-xl text-xs leading-6 text-brand-Brown sm:text-sm">
-                            From weddings to festive gatherings, we provide complete
-                            styling solutions to make your moments truly special.
-                        </p>
 
                         {/* Service cards */}
                         <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-7 sm:gap-4 xl:grid-cols-4">
@@ -166,10 +170,7 @@ export default function OccasionServices() {
                         </div>
 
                         {/* Supporting note */}
-                        <div className="mt-5 flex items-center gap-2 text-[10px] text-brand-Brown sm:mt-6 sm:text-xs">
-                            <span className="h-px w-7 bg-brand-tan" />
-                            Thoughtfully styled. Beautifully remembered.
-                        </div>
+                        <BottomEditorial BottomDetail={{...BottomDetail,visible}} />
                     </div>
 
                     {/* Right: Editorial image and consultation card */}

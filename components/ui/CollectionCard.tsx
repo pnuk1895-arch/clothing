@@ -44,7 +44,8 @@ export default function CollectionCard({ collection, index, visible }: Collectio
             <Image
                 src={collection.image}
                 alt={collection.imageAlt}
-                fill
+                fill 
+                loading="eager"
                 priority={index === 0}
                 sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 50vw"
                 className={cn(

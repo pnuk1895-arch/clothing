@@ -11,6 +11,8 @@ import {
     Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Title from "../ui/title";
+import ViewAll from "../ui/viewAll";
 
 const steps = [
     {
@@ -38,6 +40,14 @@ const steps = [
         icon: PackageCheck,
     },
 ];
+
+const SectionDetail = {
+    TopHeading: "Simple Steps",
+    MainTitle: {
+        First: " How It Works"
+    },
+    MainContent: "From inspiration to your perfect outfit — in just a few thoughtful steps."
+}
 
 export default function HowItWorks() {
     const sectionRef = useRef<HTMLElement | null>(null);
@@ -80,37 +90,14 @@ export default function HowItWorks() {
                 {/* Section heading */}
                 <div
                     className={cn(
-                        "reveal-content mb-9 flex items-start justify-between gap-5 sm:mb-12",
-                        visible && "is-visible"
-                    )}
-                >
-                    <div>
-                        <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-brand-tan">
-                            Simple Steps
-                        </span>
-
-                        <h2
-                            id="how-it-works-heading"
-                            className="font-serif text-3xl leading-tight text-brand-heading-dark sm:text-4xl lg:text-5xl"
-                        >
-                            How It Works
-                        </h2>
-
-                        <p className="mt-3 max-w-xl text-sm leading-6 text-how-it-works-description sm:text-base">
-                            From inspiration to your perfect outfit — in just a few thoughtful steps.
-                        </p>
-                    </div>
-
-                    <a
-                        href="/custom-services"
-                        className="group mt-5 hidden shrink-0 items-center gap-2 text-sm font-semibold text-brand-rosewood transition-colors duration-300 hover:text-how-it-works-link-hover sm:inline-flex"
-                    >
-                        Learn More
-                        <ArrowRight
-                            size={16}
-                            className="transition-transform duration-300 group-hover:translate-x-1"
-                        />
-                    </a>
+                        "mb-7 flex flex-col justify-between h-full gap-5 sm:mb-9 md:flex-row md:items-end",
+                        "transition-all duration-700 ease-out",
+                        visible
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-8 opacity-0"
+                    )}>
+                    <Title SectionDetail={SectionDetail} />
+                    <ViewAll link='/' Text="Learn more" />
                 </div>
 
                 {/* Steps */}

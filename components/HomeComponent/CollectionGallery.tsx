@@ -7,6 +7,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 import CollectionCard from "../ui/CollectionCard"
 import Title from "../ui/title"
+import ViewAll from "../ui/viewAll";
 
 const collections = [
     {
@@ -43,6 +44,7 @@ const collections = [
 
 const SectionDetail = {
     TopHeading: "CURATED FOR YOUR MOMENTS",
+    MainTitle: { First: `Our ${" "}`, Second: "Collections" },
     MainContent: `From timeless traditional elegance to contemporary occasion wear,
                     discover pieces made to make every celebration unforgettable.`
 }
@@ -102,16 +104,15 @@ export default function CollectionsSection() {
 
             <div className="relative z-10 mx-auto w-[90%] max-w-content-area">
                 {/* Section heading */}
-                <div className="flex justify-between">
-                    <Title SectionDetail={{ ...SectionDetail, visible }} />
-                    <Link
-                        href="/collections"
-                        className="group inline-flex w-fit shrink-0 items-center gap-2 border-b border-brand-tan pb-1 text-xs font-medium text-brand-rosewood transition-colors hover:border-brand-rosewood hover:text-brand-heading-dark"
-                    >
-                        View All Collections
-                        <FiArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
-                    </Link>
-
+                <div className={cn(
+                    "mb-7 flex flex-col justify-between h-full gap-4 sm:mb-9 md:flex-row md:items-end",
+                    "transition-all duration-700 ease-out",
+                    visible
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-8 opacity-0"
+                )}>
+                    <Title SectionDetail={SectionDetail} />
+                    <ViewAll link="/" Text="View All Collection" />
                 </div>
 
                 {/* Collection banners */}
