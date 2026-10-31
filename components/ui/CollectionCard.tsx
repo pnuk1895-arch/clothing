@@ -100,7 +100,7 @@ export default function CollectionCard({ collection, index, visible }: Collectio
                 <span
                     className={cn(
                         "mb-3 text-[9px] font-semibold uppercase tracking-[0.24em]",
-                        "text-brand-muted-rosewood sm:text-[10px]"
+                        "text-brand-muted-rosewood sm:text-xxs"
                     )}
                 >
                     {collection.eyebrow}

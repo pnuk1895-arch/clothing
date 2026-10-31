@@ -63,13 +63,13 @@ const OCCASIONS: Category[] = [
 ];
 
 const NAV_LINKS: NavLinkItem[] = [
-    { label: "New Arrivals", href: "/new-arrivals" },
-    { label: "Women", href: "/women", menu: "women" },
-    { label: "Men", href: "/men", menu: "men" },
-    { label: "Occasion Wear", href: "/occasion-wear", menu: "occasion" },
-    { label: "Custom Services", href: "/custom-services", menu: "services" },
-    { label: "Our Story", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: "New Arrivals", href: "/New-Arrival" },
+    { label: "Women", href: "/Women-collection", menu: "women" },
+    { label: "Men", href: "/Men-collection", menu: "men" },
+    { label: "Occasion Wear", href: "/Occasion-Wear", menu: "occasion" },
+    { label: "Custom Services", href: "/Custom-Services", menu: "services" },
+    { label: "Our Story", href: "/About" },
+    { label: "Contact", href: "/Contact" },
 ];
 
 export default function Header() {
@@ -89,7 +89,7 @@ export default function Header() {
     }, []);
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 35);
+        const handleScroll = () => setScrolled(window.scrollY > 40);
         handleScroll();
 
         window.addEventListener("scroll", handleScroll, { passive: true });
@@ -156,7 +156,9 @@ export default function Header() {
 
     return (
         <>
-            <header ref={headerRef} className="fixed inset-x-0 top-0 z-50 isolate w-full">
+            <header ref={headerRef} className={cn("fixed inset-x-0 top-0 z-50 isolate w-full",
+            // scrolled ? "fixed" : "sticky lg:relative" 
+            )}>
                 {/* Animated background */}
                 <div
                     aria-hidden="true"
@@ -170,7 +172,7 @@ export default function Header() {
 
                 {/* Announcement strip */}
                 <div
-                    className={`hidden h-7 items-center justify-center border-b border-white/10 bg-linear-to-r from-brand-heading-dark/90 via-brand-rosewood/80 to-brand-deep-burgundy/90 text-[10px] font-medium tracking-wide text-brand-cream transition-all duration-500 sm:flex ${scrolled ? "opacity-0 -translate-y-full h-0 overflow-hidden" : ""}`}
+                    className={`hidden h-7 items-center justify-center border-b border-white/10 bg-linear-to-r from-brand-heading-dark/90 via-brand-rosewood/80 to-brand-deep-burgundy/90 text-xxs font-medium tracking-wide text-brand-cream transition-all duration-500 sm:flex ${scrolled ? "opacity-0 -translate-y-full h-0 overflow-hidden" : ""}`}
                 >
                     <div className="mx-auto flex w-[90%] max-w-content-area items-center justify-between gap-3">
                         <span className="flex items-center gap-1.5">
@@ -343,7 +345,7 @@ export default function Header() {
 
                     <div className="flex-1 overflow-y-auto px-4 py-5">
                         <div className="mb-5 rounded-xl bg-linear-to-r from-brand-deep-burgundy/97 to-brand-rosewood/80 p-4 text-brand-cream">
-                            <p className="text-[10px] uppercase tracking-[0.2em] text-brand-beige">
+                            <p className="text-xxs uppercase tracking-[0.2em] text-brand-beige">
                                 Tradition meets modern style
                             </p>
                             <p className="mt-2 font-serif text-2xl leading-tight">

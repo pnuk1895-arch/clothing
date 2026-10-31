@@ -30,6 +30,7 @@ export default function CategoryCards({ items, onNavigate }: CategoryCardsProps)
                             src={item.image}
                             alt={item.name}
                             fill
+                            loading="eager"
                             sizes="(max-width: 640px) 45vw, (max-width: 1024px) 22vw, 180px"
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />

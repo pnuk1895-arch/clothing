@@ -1,0 +1,31 @@
+@keyframes just-landed-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.just-landed-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.just-landed-reveal-visible {
+  animation: just-landed-reveal 900ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .just-landed-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .just-landed-reveal-visible {
+    animation: none;
+  }
+}

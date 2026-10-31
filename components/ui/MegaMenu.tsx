@@ -47,7 +47,7 @@ export default function MegaMenu({ type, onNavigate }: MegaMenuProps) {
             <div className="mx-auto max-w-360 overflow-hidden rounded-2xl border border-[#DCC7B2]/70 bg-[#FAF7F2]/98 shadow-[0_24px_70px_rgba(46,42,36,0.18)] backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200">
                 <div className="grid grid-cols-[210px_minmax(0,1fr)_240px] gap-6 p-6 xl:grid-cols-[230px_minmax(0,1fr)_270px]">
                     <aside className="border-r border-[#DCC7B2]/70 pr-5">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#B9987A]">
+                        <p className="text-xxs font-semibold uppercase tracking-[0.24em] text-[#B9987A]">
                             Explore Silaah
                         </p>
                         <h3 className="mt-3 font-serif text-2xl text-[#2E2A24]">
@@ -72,12 +72,12 @@ export default function MegaMenu({ type, onNavigate }: MegaMenuProps) {
                         <Link
                             href={
                                 isWomen
-                                    ? "/women"
+                                    ? "/Women-Collection"
                                     : isMen
-                                        ? "/men"
+                                        ? "/Men-Collection"
                                         : isOccasion
-                                            ? "/occasion-wear"
-                                            : "/custom-services"
+                                            ? "/Occasion-Wear"
+                                            : "/Custom-Services"
                             }
                             onClick={onNavigate}
                             className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#6B5B44] px-4 py-2.5 text-xs font-medium text-[#FAF7F2] transition-all duration-300 hover:bg-[#2E2A24] hover:shadow-md"
@@ -159,6 +159,7 @@ export default function MegaMenu({ type, onNavigate }: MegaMenuProps) {
                             }
                             alt={isMen ? "Silaah men's collection" : "Silaah occasion collection"}
                             fill
+                            loading="eager"
                             sizes="270px"
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />

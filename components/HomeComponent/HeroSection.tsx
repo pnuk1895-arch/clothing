@@ -94,7 +94,9 @@ export default function HeroSection() {
             )}
         >
             {/* Hero image background */}
-            <div className="absolute inset-0 -z-20">
+
+
+            <div className="absolute inset-0 -z-20  overflow-hidden">
                 <Image
                     key={slide.image}
                     src={slide.image}
@@ -113,11 +115,12 @@ export default function HeroSection() {
                 />
             </div>
 
+
             {/* Ivory overlay keeps text readable */}
             <div
                 aria-hidden="true"
                 className={cn(
-                    "absolute inset-0 -z-10",
+                    "absolute inset-0 right-1/2 -z-10",
                     // "bg-hero-overlay",
                     "max-lg:bg-hero-overlay-tablet",
                     "max-md:bg-hero-overlay-mobile"

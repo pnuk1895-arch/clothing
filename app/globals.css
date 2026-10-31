@@ -35,7 +35,9 @@
     --color-footer-outline: var(--footer-outline);
     --color-footer-button: var(--footer-button);
     --color-footer-button-text: var(--footer-button-text);
-    --max-width-content-area:var(--content-area)
+    --max-width-content-area:var(--content-area);
+    --text-xxs:10px;
+    --breakpoint-xs:425px
 }
 
 
@@ -69,6 +71,45 @@
     --footer-button-text: #FFF3E5;
 
 }
+
+@utility hero-content-glow {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+
+    inset: -35px -45px;
+
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 245, 232, 0.95) 0%,
+      rgba(255, 239, 220, 0.75) 35%,
+      rgba(255, 239, 220, 0.35) 60%,
+      transparent 100%
+    );
+  }
+}
+
+/* herosection  */
+@layer utilities {
+  .hero-model-focus {
+    object-position: 68% center;
+  }
+
+  @media (max-width: 767px) {
+    .hero-model-focus {
+      object-position: 72% center;
+    }
+  }
+}
+
+
+
+/* herosection  *//* herosection  */
 
 
 @utility bg-footer-glow {

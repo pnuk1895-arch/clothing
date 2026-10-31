@@ -15,7 +15,7 @@ export default function Title({ SectionDetail }: {
     return (
         
             <div className="max-w-2xl">
-                <span className="mb-2 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-muted-rosewood sm:text-[11px]">
+                <span className="mb-2 inline-flex items-center gap-2 text-xxs font-semibold uppercase tracking-[0.28em] text-brand-muted-rosewood sm:text-[11px]">
                     <span className="h-px w-7 bg-brand-tan" />
                     {SectionDetail?.TopHeading}
                 </span>

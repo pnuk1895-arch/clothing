@@ -26,10 +26,10 @@ export default function HomePage() {
                 <MadeJustForYou />
                 <HowItWorks />
                 <WhatOurCustomerSay />
-                <RealFashionMoments/>
-                <BeTheFirstToKnow/>
+                <RealFashionMoments />
+                <BeTheFirstToKnow />
             </main>
-            {/* <Footer/> */}
+            {/* Footer */}
             <Footer />
         </>
     )

@@ -105,7 +105,7 @@ export default function SearchPanel({
 
                 <div className="grid md:grid-cols-[190px_minmax(0,1fr)]">
                     <aside className="border-b border-[#DCC7B2]/70 p-4 md:border-b-0 md:border-r sm:p-5">
-                        <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B9987A]">
+                        <p className="mb-3 text-xxs font-semibold uppercase tracking-[0.2em] text-[#B9987A]">
                             Popular searches
                         </p>
                         <div className="flex flex-wrap gap-2 md:flex-col">

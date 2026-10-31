@@ -225,7 +225,6 @@ export default function WhatOurCustomersSay() {
                 </div>
 
                 {/* Testimonial carousel */}
-                <div className="overflow-hidden">
                     <div
                         className="flex items-stretch transition-transform duration-700 ease-in-out motion-reduce:transition-none"
                         style={{
@@ -322,7 +321,6 @@ export default function WhatOurCustomersSay() {
                             </article>
                         ))}
                     </div>
-                </div>
 
                 {/* Carousel pagination */}
                 <div className="mt-8 flex items-center justify-center gap-2">
