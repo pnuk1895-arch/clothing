@@ -12,8 +12,10 @@ type SectionDetail = {
 
 export default function CommonHero({
   SectionDetail,
+  className,
 }: {
   SectionDetail: SectionDetail;
+  className?:string
 }) {
   return (
     <section
@@ -31,7 +33,9 @@ export default function CommonHero({
           fill
           loading="eager"
           sizes="100vw"
-          className="object-cover object-[70%_top] 2xl:object-[80%_30%] "
+          className={cn("object-cover object-[70%_top] 2xl:object-[80%_30%] ",
+            className
+          )}
         />
       </div>
 
@@ -47,27 +51,27 @@ export default function CommonHero({
           )}
         >
           {/* Top Heading */}
-          <p className="w-fit rounded-md px-2 text-xxs font-semibold uppercase tracking-widest text-brand-muted-rosewood sm:text-sm lg:text-base">
+          <p className="w-fit rounded-full px-2 text-xxs font-semibold uppercase tracking-widest text-brand-muted-rosewood sm:text-sm lg:text-base text-glow ">
             {SectionDetail.TopHeading}
           </p>
 
-          {/* Main Heading */}
+          {/* Main Headingbg-brand-light-Cream/30  */}
           <h1
             className={cn(
               "w-fit rounded-md px-2",
               "font-serif text-2xl font-medium leading-tight text-brand-heading-dark ",
-              "sm:text-5xl md:text-5xl lg:text-6xl  "
+              "sm:text-5xl md:text-5xl lg:text-6xl rounded-full text-glow  "
             )}
           >
             {SectionDetail.MainTitle}
           </h1>
 
           {/* Description */}
-          <p className="rounded-md px-2 text-xs font-bold leading-relaxed text-brand-heading-dark/80 sm:text-lg lg:text-xl ">
+          <p className="rounded-full w-fit px-2 text-xs font-bold leading-relaxed text-brand-heading-dark/80 sm:text-lg lg:text-xl text-glow ">
             {SectionDetail.SubTitle}
           </p>
 
-          <p className="w-60 px-2 text-xxs font-semibold leading-relaxed text-brand-heading-dark/80 sm:w-full sm:text-base lg:text-lg ">
+          <p className="w-60 px-2 text-xxs font-semibold rounded-full leading-relaxed text-brand-heading-dark/80 sm:w-full sm:text-base lg:text-lg text-glow ">
            {SectionDetail.MainContent}
           </p>
         </div>

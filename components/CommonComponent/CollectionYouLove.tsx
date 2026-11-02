@@ -1,6 +1,4 @@
 
-
-
 "use client";
 
 import Image from "next/image";
@@ -18,27 +16,30 @@ export interface Collection {
   href: string;
 }
 
-interface CollectionsYouLoveProps {
-  collections: Collection[];
+
+interface CollectionDetail {
   heading?: string;
   description?: string;
-  viewAllHref?: string;
-  className?: string;
+  viewAllHref: string;
+  className?: string
+}
+
+interface CollectionsYouLoveProps {
+  collections: Collection[];
+  CollectionDetail: CollectionDetail
+
 }
 
 export default function CollectionsYouLove({
   collections,
-  heading = "Collections You’ll Love",
-  description = "Discover our latest drops across every category.",
-  viewAllHref = "/collections",
-  className,
+  CollectionDetail
 }: CollectionsYouLoveProps) {
   return (
     <section
       aria-labelledby="collections-heading"
       className={cn(
-        "w-full overflow-hidden bg-brand-cream",
-        className
+        "w-full overflow-hidden bg-collections-section",
+        CollectionDetail.className,
       )}
     >
       <div className="mx-auto max-w-content-area w-[90%] py-8 md:py-10 ">
@@ -51,16 +52,16 @@ export default function CollectionsYouLove({
               id="collections-heading"
               className="font-serif text-2xl text-brand-heading-dark sm:text-3xl"
             >
-              {heading}
+              {CollectionDetail.heading}
             </h2>
 
             <p className="text-xs leading-relaxed text-brand-Brown sm:text-sm">
-              {description}
+              {CollectionDetail.description}
             </p>
           </div>
 
           <Link
-            href={viewAllHref}
+            href={CollectionDetail.viewAllHref}
             className="group hidden shrink-0 gap-1 p-0 text-xs font-medium text-brand-burgundy hover:text-brand-rosewood sm:inline-flex"
           >
             View All
@@ -152,11 +153,11 @@ export default function CollectionsYouLove({
         {/* Mobile View All */}
         <div className="mt-3 flex justify-end sm:hidden">
           <Link
-            href={viewAllHref}
-            className="group gap-1 p-0 text-xs font-medium text-brand-burgundy"
+            href={CollectionDetail.viewAllHref}
+            className="gap-1 p-0 text-xs font-medium text-brand-burgundy flex"
           >
             View All Collections
-            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRight className="size-4 transition-transform duration-300 " />
           </Link>
         </div>
 
