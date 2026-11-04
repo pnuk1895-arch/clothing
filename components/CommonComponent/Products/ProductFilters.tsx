@@ -91,7 +91,7 @@ export default function ProductFilters({
     return (
         <div className="flex h-full flex-col">
 
-            <div className="flex-1 space-y-6 overflow-y-auto p-4">
+            <div className="flex-1 space-y-6 overflow-y-auto pr-4">
 
                 {/* Category */}
                 <section className="space-y-3">

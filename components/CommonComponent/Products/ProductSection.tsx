@@ -125,7 +125,7 @@ export default function ProductSection() {
   }, [filters, sortBy])
 
   return (
-    <section className="mx-auto max-w-content-area px-4 py-10">
+    <section className="mx-auto w-[90%] max-w-content-area py-10">
 
       <div className="flex flex-col gap-5 lg:flex-row">
 

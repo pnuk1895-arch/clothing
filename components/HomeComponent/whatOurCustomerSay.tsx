@@ -80,7 +80,7 @@ const getVisibleCount = () => {
     return 3;
 };
 
-const SectionDetail={
+const TitleDetail={
     TopHeading:"Real stories",
     MainTitle:{
         First:`What Our ${" "}`,
@@ -177,7 +177,7 @@ export default function WhatOurCustomersSay() {
                     )}
                 >
                     <div className="max-w-2xl">
-                        <Title SectionDetail={SectionDetail} />
+                        <Title TitleDetail={TitleDetail} />
                     </div>
 
                     {/* Matching circular left/right controls */}
@@ -226,7 +226,7 @@ export default function WhatOurCustomersSay() {
 
                 {/* Testimonial carousel */}
                     <div
-                        className="flex items-stretch transition-transform duration-700 ease-in-out motion-reduce:transition-none"
+                        className="flex items-stretch transition-transform duration-700 ease-in-out motion-reduce:transition-none overflow-hidden py-2"
                         style={{
                             transform: `translateX(calc(${activeIndex} * -1 * (100% + 1rem) / ${visibleCount}))`,
                         }}
@@ -280,7 +280,7 @@ export default function WhatOurCustomersSay() {
                                     )}
                                 </div>
 
-                                <span className="mb-3 w-fit rounded-full bg-brand-light-Cream px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-muted-rosewood">
+                                <span className="mb-3 w-fit rounded-full bg-brand-light-Cream px-3 py-1 text-xxs font-semibold uppercase tracking-wider text-brand-muted-rosewood">
                                     {testimonial.occasion}
                                 </span>
 

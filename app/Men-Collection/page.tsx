@@ -3,14 +3,16 @@ import CommonHero from "@/components/CommonComponent/CommonHero";
 import Footer from "@/components/CommonComponent/Footer";
 import Header from "@/components/CommonComponent/Header";
 import ProductSection from "@/components/CommonComponent/Products/ProductSection";
+import BeTheFirstToKnow from "@/components/HomeComponent/BeTheFirstToKnow";
 import FeaturesSection from "@/components/HomeComponent/Features";
 import CompleteYourLook from "@/components/MenCollectionComponent/CompleteYourLook";
 
 const HeroDetail={
    Image: "/Images/Men/HeroImage/HeroImage.webp",
     TopHeading: "MEN COLLECTION",
-    MainTitle: `Tradition ${" "}`,
-    SubTitle: "Meets Modernity",
+    MainTitle: `Tradition
+     Meets Modernity`,
+    SubTitle: "",
     MainContent: "Timeless silhousttes, refined details and modern comfort - crafted for today's man."
 }
 
@@ -60,11 +62,12 @@ export default function MenCollectionPage() {
     <>
       <Header/>
       <main>
-        <CommonHero SectionDetail={HeroDetail} className="object-[60%_top] 2xl:object-center"/>
+        <CommonHero HeroDetail={HeroDetail} className="object-[60%_top] 2xl:object-[center_40%]"/>
         <FeaturesSection/>
         <ProductSection/>
         <CollectionsYouLove collections={collections} CollectionDetail={CollectionDetail} />
         <CompleteYourLook/>
+        <BeTheFirstToKnow/>
       </main>
       <Footer/>
     </>

@@ -118,7 +118,7 @@ export default function NewArrivalPage() {
     <>
       <Header />
       <main >
-        <CommonHero SectionDetail={SectionDetailHero} />
+        <CommonHero HeroDetail={SectionDetailHero} className="object-[70%_top] 2xl:object-[80%_30%]" />
         <ProductSection />
         <JustLanded
           imageSrc="/Images/JustLanded.png"

@@ -50,12 +50,12 @@ export default function CollectionsYouLove({
           <div className="space-y-1.5">
             <h2
               id="collections-heading"
-              className="font-serif text-2xl text-brand-heading-dark sm:text-3xl"
+              className="font-serif text-2xl text-brand-heading-dark sm:text-3xl lg:text-4xl"
             >
               {CollectionDetail.heading}
             </h2>
 
-            <p className="text-xs leading-relaxed text-brand-Brown sm:text-sm">
+            <p className="text-sm font-semibold leading-relaxed text-brand-Brown sm:text-base lg:text-lg">
               {CollectionDetail.description}
             </p>
           </div>

@@ -49,7 +49,7 @@ export default function FilterSidebar({
       {/* Desktop Sidebar */}
       <aside className="hidden w-64 shrink-0 border-r border-brand-beige lg:block">
         <div className="sticky top-24">
-          <div className="flex items-center justify-between px-4 py-5">
+          <div className="flex items-center justify-between pr-4 py-5">
             <h2 className="font-serif text-lg text-brand-heading-dark">
               Filter & Refine
             </h2>
