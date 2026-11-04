@@ -120,7 +120,7 @@ export default function OccasionServices() {
                         )}
                     >
                         {/* heading  */}
-                        <Title SectionDetail={SectionDetail} />
+                        <Title TitleDetail={SectionDetail} />
 
 
                         {/* Service cards */}
@@ -159,7 +159,7 @@ export default function OccasionServices() {
                                             {service.title}
                                         </span>
 
-                                        <span className="mt-1 text-[10px] leading-4 text-brand-Brown sm:text-[11px]">
+                                        <span className="mt-1 text-xxs leading-4 text-brand-Brown sm:text-[11px]">
                                             {service.description}
                                         </span>
 

@@ -174,7 +174,7 @@ export default function FindPerfectLook() {
                             : "translate-y-8 opacity-0"
                     )}
                 >
-                    <Title SectionDetail={SectionDetail} />
+                    <Title TitleDetail={SectionDetail} />
                     <div className="flex items-center justify-between gap-4 md:flex-col md:items-end lg:self-center md:self-stretch md:pt-5">
                         <ViewAll link="/" Text="View All Occasions" />
                         <div className="flex items-center gap-2 lg:hidden">
@@ -266,7 +266,7 @@ export default function FindPerfectLook() {
                                             {occasion.title}
                                         </h3>
 
-                                        <p className="mt-1 text-[10px] text-white/85 sm:text-xs">
+                                        <p className="mt-1 text-xxs text-white/85 sm:text-xs">
                                             {occasion.subtitle}
                                         </p>
 
@@ -282,7 +282,7 @@ export default function FindPerfectLook() {
                                         <p className="truncate text-xs font-semibold text-brand-rosewood sm:text-sm">
                                             {occasion.title}
                                         </p>
-                                        <p className="mt-1 truncate text-[10px] text-brand-Brown/75 sm:text-xs">
+                                        <p className="mt-1 truncate text-xxs text-brand-Brown/75 sm:text-xs">
                                             {occasion.subtitle}
                                         </p>
                                     </div>

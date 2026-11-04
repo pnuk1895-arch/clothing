@@ -111,7 +111,7 @@ export default function CollectionsSection() {
                         ? "translate-y-0 opacity-100"
                         : "translate-y-8 opacity-0"
                 )}>
-                    <Title SectionDetail={SectionDetail} />
+                    <Title TitleDetail={SectionDetail} />
                     <ViewAll link="/" Text="View All Collection" />
                 </div>
 
