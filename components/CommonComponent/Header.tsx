@@ -194,7 +194,7 @@ export default function Header() {
                 <div
                     className={`relative transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${scrolled
                             ? "border-b border-brand-beige/70 bg-linear-to-r from-brand-cream/95 via-brand-light-cream/80 to-brand-beige/90 shadow-brand-soft backdrop-blur-xl "
-                            : "border-b border-white/15 max-lg:bg-linear-to-r max-lg:from-brand-cream/95 max-lg:via-brand-light-cream/80 max-lg:to-brand-beige/90 max-lg:shadow-brand-soft bg-linear-to-b from-brand-heading-dark/10 to-transparent"
+                            : "border-b border-white/15 bg-linear-to-r from-brand-cream/95 via-brand-light-cream/80 to-brand-beige/90 max-lg:shadow-brand-soft "
                         }`}
                 >
                     <div className="mx-auto w-[90%] flex h-16.5 max-w-content-area items-center justify-between gap-3 lg:h-19">

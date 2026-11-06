@@ -1,3 +1,6 @@
+"use client"
+
+
 import CollectionsYouLove from "@/components/CommonComponent/CollectionYouLove";
 import CommonHero from "@/components/CommonComponent/CommonHero";
 import Footer from "@/components/CommonComponent/Footer";

@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/select"
 
 import { Separator } from "@/components/ui/separator"
+import Link from "next/link"
 
 const products = [
   {
@@ -182,8 +183,9 @@ export default function ProductSection() {
             <div className="grid grid-cols-2 gap-4 sm:gap-6 xl:grid-cols-3">
 
               {filteredProducts.map((product) => (
-                <article
+                <Link
                   key={product.id}
+                  href="/Product"
                   className="group min-w-0"
                 >
                   <div className="aspect-3/4 overflow-hidden rounded-lg bg-brand-light-Cream">
@@ -203,7 +205,7 @@ export default function ProductSection() {
                       ₹{product.price.toLocaleString("en-IN")}
                     </p>
                   </div>
-                </article>
+                </Link>
               ))}
 
             </div>

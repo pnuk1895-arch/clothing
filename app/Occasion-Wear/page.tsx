@@ -1,3 +1,5 @@
+"use client"
+
 import CommonHero from "@/components/CommonComponent/CommonHero";
 import Footer from "@/components/CommonComponent/Footer";
 import Header from "@/components/CommonComponent/Header";
