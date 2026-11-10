@@ -15,7 +15,6 @@
     --color-brand-soft-card-Beigevar: var(--brand-soft-card-Beigevar);
     --color-brand-muted-rosewood: var(--brand-muted-rosewood);
     --color-header-burgundy: var(--header-burgundy);
-    --color-brand-burgundy: var(--brand-burgundy);
     --color-brand-rosewood: var(--brand-rosewood);
     --color-brand-deep-burgundy: var(--brand-deep-burgundy);
     --color-brand-muted-rosewood: var(--brand-muted-rosewood);
@@ -43,7 +42,6 @@
 
 :root {
     --content-area: 1440px;
-
     --brand-light-Cream: #F8EEE5;
     --brand-cream: #FAF7F2;
     --brand-beige: #DCC7B2;

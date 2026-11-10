@@ -122,7 +122,7 @@ export default function MadeJustForYou() {
                         />
 
                         <div className="relative mx-auto w-[90%] max-w-180 lg:ml-auto lg:mr-0">
-                            <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.28em] text-brand-made-label sm:text-[10px]">
+                            <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.28em] text-brand-made-label sm:text-xxs">
                                 Custom Tailoring
                             </p>
 
@@ -174,7 +174,7 @@ export default function MadeJustForYou() {
                                                 <Icon className="text-lg transition-transform duration-300 group-hover:scale-110" />
                                             </span>
 
-                                            <h3 className="mt-2.5 text-[10px] font-semibold leading-4 text-brand-heading-dark sm:text-[11px]">
+                                            <h3 className="mt-2.5 text-xxs font-semibold leading-4 text-brand-heading-dark sm:text-[11px]">
                                                 {service.title}
                                             </h3>
 
@@ -206,7 +206,7 @@ export default function MadeJustForYou() {
                                     <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
                                 </Link>
 
-                                <span className="inline-flex items-center gap-1.5 text-[10px] text-brand-muted-rosewood">
+                                <span className="inline-flex items-center gap-1.5 text-xxs text-brand-muted-rosewood">
                                     <FiCheck className="text-brand-muted-rosewood" />
                                     Crafted around you
                                 </span>

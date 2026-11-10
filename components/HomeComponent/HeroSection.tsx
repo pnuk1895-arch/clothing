@@ -161,7 +161,7 @@ export default function HeroSection() {
                                 : "translate-y-6 opacity-0"
                         )}
                     >
-                        <p className="mb-5 inline-flex max-w-full items-center rounded-xl border border-brand-tan/35 bg-linear-to-r from-brand-cream/95 via-brand-light-cream/85 to-brand-beige/55 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-brown shadow-brand-soft backdrop-blur-xl sm:mb-6 sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-[0.28em]">
+                        <p className="mb-5 inline-flex max-w-full items-center rounded-xl border border-brand-tan/35 bg-linear-to-r from-brand-cream/95 via-brand-light-cream/85 to-brand-beige/55 px-4 py-2 text-xxs font-semibold uppercase tracking-[0.22em] text-brand-brown shadow-brand-soft backdrop-blur-xl sm:mb-6 sm:px-5 sm:py-2.5 sm:text-xs sm:tracking-[0.28em]">
                             {slide.eyebrow}
                         </p>
 
@@ -241,7 +241,7 @@ export default function HeroSection() {
                                             />
                                         )}
                                     </div>
-                                    <p className="mt-1 text-[10px] leading-4 text-brand-brown/85 sm:text-xs">
+                                    <p className="mt-1 text-xxs leading-4 text-brand-brown/85 sm:text-xs">
                                         {stat.label}
                                     </p>
                                 </div>

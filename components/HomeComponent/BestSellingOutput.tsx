@@ -239,7 +239,7 @@ export default function BestSellingOutfits() {
                     )}
                 >
                     <div>
-                        <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.28em] text-[#A17A60] sm:text-[10px]">
+                        <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.28em] text-[#A17A60] sm:text-xxs">
                             Most Loved
                         </p>
 
@@ -270,7 +270,7 @@ export default function BestSellingOutfits() {
                                     onClick={() => setActiveCategory(category)}
                                     aria-pressed={activeCategory === category}
                                     className={cn(
-                                        "shrink-0 rounded-full px-4 py-2 text-[10px] font-medium",
+                                        "shrink-0 rounded-full px-4 py-2 text-xxs font-medium",
                                         "transition-all duration-300 sm:text-[11px]",
                                         "focus-visible:outline-none focus-visible:ring-2",
                                         "focus-visible:ring-[#79283B] focus-visible:ring-offset-2",
@@ -410,7 +410,7 @@ export default function BestSellingOutfits() {
                                         className={cn(
                                             "absolute inset-x-2 bottom-2 flex items-center",
                                             "justify-center gap-2 rounded-sm bg-[#FFF9F2]/95",
-                                            "py-2 text-[10px] font-medium text-[#542F29]",
+                                            "py-2 text-xxs font-medium text-[#542F29]",
                                             "opacity-0 shadow-md transition-all duration-300",
                                             "translate-y-2 group-hover:translate-y-0",
                                             "group-hover:opacity-100",
@@ -436,7 +436,7 @@ export default function BestSellingOutfits() {
                                             {formatPrice(product.price)}
                                         </span>
 
-                                        <span className="text-[9px] text-[#A99A8E] line-through sm:text-[10px]">
+                                        <span className="text-[9px] text-[#A99A8E] line-through sm:text-xxs">
                                             {formatPrice(product.oldPrice)}
                                         </span>
                                     </div>
@@ -445,7 +445,7 @@ export default function BestSellingOutfits() {
                                         <div className="flex min-w-0 items-center gap-1">
                                             <FiStar className="shrink-0 fill-[#D99A35] text-[#D99A35]" />
 
-                                            <span className="text-[10px] font-semibold text-[#4D4038]">
+                                            <span className="text-xxs font-semibold text-[#4D4038]">
                                                 {product.rating}
                                             </span>
 

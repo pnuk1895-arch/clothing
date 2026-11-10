@@ -1,3 +1,4 @@
+"use client"
 
 import { cn } from "@/lib/utils";
 import {
@@ -59,7 +60,8 @@ const whyShopData = [
 
 export default function WhyShopNewArrival() {
     return (
-        <section className="bg-[url('/Images/NewArrival/WhyShopNewArrival/WhyShopNewArrival.webp')] bg-cover bg-center bg-no-repeat">
+        <section style={{
+            backgroundImage:"url('/Images/NewArrival/WhyShopNewArrival/WhyShopNewArrival.webp')"}} className="bg-cover bg-center bg-no-repeat">
 
             <div className="mx-auto w-[90%] max-w-content-area">
 

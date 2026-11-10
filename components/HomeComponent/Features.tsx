@@ -148,7 +148,7 @@ export default function FeaturesSection() {
 
               <p
                 className={cn(
-                  "mt-1 text-[10px] leading-relaxed",
+                  "mt-1 text-xxs leading-relaxed",
                   "text-stone-600 transition-colors duration-300",
                   "group-hover:text-stone-800",
                   "sm:text-xs"

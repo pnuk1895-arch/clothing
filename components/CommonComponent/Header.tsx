@@ -5,7 +5,6 @@ import MegaMenu from "../ui/MegaMenu";
 import SearchPanel from "../ui/search";
 import { cn } from "@/lib/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { MouseEvent as ReactMouseEvent } from "react";
 import Link from "next/link";
 import {
     Search,
@@ -80,6 +79,7 @@ export default function Header() {
     const [mobileExpanded, setMobileExpanded] = useState<MenuType | null>(null);
     const [query, setQuery] = useState("");
     const headerRef = useRef<HTMLElement | null>(null);
+    const [DropDown, setDropDown]= useState()
 
     const closeAll = useCallback(() => {
         setActiveMenu(null);
@@ -153,6 +153,10 @@ export default function Header() {
             { name: "Perfect Fitting", href: "/custom-services/fitting" },
         ],
     };
+
+    function CreditHandler(){
+       console.log("data")
+    }
 
     return (
         <>
@@ -270,13 +274,14 @@ export default function Header() {
                                 <Search className="transition-transform size-6 duration-300 group-hover:scale-110 xl:size-6" />
                             </button>
 
-                            <Link
-                                href="/account"
+
+                            <button
+                                onClick={CreditHandler}
                                 aria-label="My account"
                                 className="hidden size-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-brand-beige/30 sm:inline-flex"
                             >
                                 <UserRound className="size-5 xl:size-6" />
-                            </Link>
+                            </button>
 
                             <Link
                                 href="/wishlist"
