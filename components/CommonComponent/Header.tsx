@@ -20,7 +20,10 @@ import {
     Gem,
     Scissors,
     Clock3,
+    CheckCheckIcon,
+    CheckIcon,
 } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 
 type MenuType = "women" | "men" | "occasion" | "services";
@@ -79,7 +82,7 @@ export default function Header() {
     const [mobileExpanded, setMobileExpanded] = useState<MenuType | null>(null);
     const [query, setQuery] = useState("");
     const headerRef = useRef<HTMLElement | null>(null);
-    const [DropDown, setDropDown]= useState()
+    const [Login, setLogin] = useState(false)
 
     const closeAll = useCallback(() => {
         setActiveMenu(null);
@@ -154,14 +157,10 @@ export default function Header() {
         ],
     };
 
-    function CreditHandler(){
-       console.log("data")
-    }
-
     return (
         <>
             <header ref={headerRef} className={cn("fixed inset-x-0 top-0 z-50 isolate w-full",
-            // scrolled ? "fixed" : "sticky lg:relative" 
+                // scrolled ? "fixed" : "sticky lg:relative" 
             )}>
                 {/* Animated background */}
                 <div
@@ -197,8 +196,8 @@ export default function Header() {
                 {/* Main navigation */}
                 <div
                     className={`relative transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${scrolled
-                            ? "border-b border-brand-beige/70 bg-linear-to-r from-brand-cream/95 via-brand-light-cream/80 to-brand-beige/90 shadow-brand-soft backdrop-blur-xl "
-                            : "border-b border-white/15 bg-linear-to-r from-brand-cream/95 via-brand-light-cream/80 to-brand-beige/90 max-lg:shadow-brand-soft "
+                        ? "border-b border-brand-beige/70 bg-linear-to-r from-brand-cream/95 via-brand-light-cream/80 to-brand-beige/90 shadow-brand-soft backdrop-blur-xl "
+                        : "border-b border-white/15 bg-linear-to-r from-brand-cream/95 via-brand-light-cream/80 to-brand-beige/90 max-lg:shadow-brand-soft "
                         }`}
                 >
                     <div className="mx-auto w-[90%] flex h-16.5 max-w-content-area items-center justify-between gap-3 lg:h-19">
@@ -275,13 +274,45 @@ export default function Header() {
                             </button>
 
 
-                            <button
-                                onClick={CreditHandler}
-                                aria-label="My account"
-                                className="hidden size-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-brand-beige/30 sm:inline-flex"
-                            >
-                                <UserRound className="size-5 xl:size-6" />
-                            </button>
+
+                            <DropdownMenu>
+                                <DropdownMenuTrigger className="relative group hidden size-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-brand-beige/30 sm:inline-flex" >
+                                    <UserRound className="transition-transform size-6 duration-300 group-hover:scale-110 xl:size-6" />
+                                    {Login && <div className=" absolute top-4 left-3 bg-brand-Brown size-3 rounded-full flex items-center justify-center">
+                                        <CheckIcon className="text-white size-3" />
+                                    </div>}
+                                </DropdownMenuTrigger>
+
+                                <DropdownMenuContent className="border-none ring-0 bg-brand-beige font-semibold "  >
+                                    {Login ? (<>
+                                        <DropdownMenuItem>
+                                            <Link
+                                                href="/Account" className="capitalize" >My profile</Link>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                            <button className="capitalize">
+                                                Log Out
+                                            </button>
+                                        </DropdownMenuItem>
+                                    </>)
+                                        :
+                                        (<>
+                                            <DropdownMenuItem>
+                                                <Link
+                                                    href="/Login" className="capitalize" >Login</Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                <Link
+                                                    href="/"
+                                                    className="capitalize"
+                                                >
+                                                    sign up
+                                                </Link>
+                                            </DropdownMenuItem>
+                                        </>)}
+
+                                </DropdownMenuContent>
+                            </DropdownMenu>
 
                             <Link
                                 href="/wishlist"
@@ -381,8 +412,8 @@ export default function Header() {
                                                     )
                                                 }
                                                 className={`flex w-full items-center justify-between rounded-lg px-3 py-3.5 text-sm transition-colors ${mobileExpanded === item.menu
-                                                        ? "bg-brand-soft-card-beige text-brand-rosewood"
-                                                        : "text-brand-heading-dark hover:bg-brand-soft-card-beige/60"
+                                                    ? "bg-brand-soft-card-beige text-brand-rosewood"
+                                                    : "text-brand-heading-dark hover:bg-brand-soft-card-beige/60"
                                                     }`}
                                             >
                                                 {item.label}
@@ -394,8 +425,8 @@ export default function Header() {
 
                                             <div
                                                 className={`grid transition-[grid-template-rows,opacity] duration-300 ${mobileExpanded === item.menu
-                                                        ? "grid-rows-[1fr] opacity-100"
-                                                        : "grid-rows-[0fr] opacity-0"
+                                                    ? "grid-rows-[1fr] opacity-100"
+                                                    : "grid-rows-[0fr] opacity-0"
                                                     }`}
                                             >
                                                 <div className="overflow-hidden">
