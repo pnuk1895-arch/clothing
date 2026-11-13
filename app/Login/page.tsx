@@ -1,17 +1,21 @@
-import Footer from "@/components/CommonComponent/Footer";
-import Header from "@/components/CommonComponent/Header";
-import LoginComponent from "@/components/LoginComponent/LoginComponent";
+"use client"
 
+import LoginComponent from "@/components/LoginComponent/LoginComponent";
+import HomePage from "../page";
+import { usePathname } from "next/navigation"
 
 
 export default function page() {
+
+  const pathname = usePathname()
+
   return (
     <>
-      <Header/>
-      <main>
-        <LoginComponent/>
-      </main>
-      <Footer/>
+        {
+          pathname === "/Login" && <HomePage />
+        }
+      <LoginComponent />
+
     </>
   )
 }

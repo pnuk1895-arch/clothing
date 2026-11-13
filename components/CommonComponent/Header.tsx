@@ -22,9 +22,12 @@ import {
     Clock3,
     CheckCheckIcon,
     CheckIcon,
+    Settings,
+    LogOut,
+    UserRoundKey,
 } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
-
+import { useRouter } from "next/navigation";
 
 type MenuType = "women" | "men" | "occasion" | "services";
 
@@ -83,6 +86,7 @@ export default function Header() {
     const [query, setQuery] = useState("");
     const headerRef = useRef<HTMLElement | null>(null);
     const [Login, setLogin] = useState(false)
+    const router = useRouter()
 
     const closeAll = useCallback(() => {
         setActiveMenu(null);
@@ -156,6 +160,12 @@ export default function Header() {
             { name: "Perfect Fitting", href: "/custom-services/fitting" },
         ],
     };
+
+    function LoginHandler() {
+
+        router.push("/Login")
+
+    }
 
     return (
         <>
@@ -273,44 +283,39 @@ export default function Header() {
                                 <Search className="transition-transform size-6 duration-300 group-hover:scale-110 xl:size-6" />
                             </button>
 
-
-
                             <DropdownMenu>
-                                <DropdownMenuTrigger className="relative group hidden size-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-brand-beige/30 sm:inline-flex" >
+                                <DropdownMenuTrigger className="relative group hidden size-9 items-center justify-center rounded-full transition-all duration-300 hover:bg-brand-beige/30 sm:inline-flex">
                                     <UserRound className="transition-transform size-6 duration-300 group-hover:scale-110 xl:size-6" />
-                                    {Login && <div className=" absolute top-4 left-3 bg-brand-Brown size-3 rounded-full flex items-center justify-center">
+
+                                    {Login && <div className="absolute top-4.5 left-5 bg-brand-Brown size-3 rounded-full flex items-center justify-center">
                                         <CheckIcon className="text-white size-3" />
                                     </div>}
                                 </DropdownMenuTrigger>
 
-                                <DropdownMenuContent className="border-none ring-0 bg-brand-beige font-semibold "  >
+                                <DropdownMenuContent
+                                    className="min-w-40 overflow-hidden rounded-xl border border-brand-beige/50 bg-brand-cream p-1.5 text-header-burgundy shadow-[0_12px_35px_rgba(46,42,36,0.16)] backdrop-blur-xl animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200"
+                                >
                                     {Login ? (<>
-                                        <DropdownMenuItem>
-                                            <Link
-                                                href="/Account" className="capitalize" >My profile</Link>
+                                        <DropdownMenuItem className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy">
+                                            My profile
                                         </DropdownMenuItem>
-                                        <DropdownMenuItem>
-                                            <button className="capitalize">
-                                                Log Out
-                                            </button>
+
+                                        <DropdownMenuItem className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy">
+                                            Log Out
                                         </DropdownMenuItem>
                                     </>)
                                         :
                                         (<>
-                                            <DropdownMenuItem>
-                                                <Link
-                                                    href="/Login" className="capitalize" >Login</Link>
+                                            <DropdownMenuItem onClick={LoginHandler} className="cursor-pointer rounded-lg px-3 py-2 text-base font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy justify-between">
+                                                Login
+                                                <UserRound className="size-5" />
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <Link
-                                                    href="/"
-                                                    className="capitalize"
-                                                >
-                                                    sign up
-                                                </Link>
+
+                                            <DropdownMenuItem onClick={()=> router.push("/Signup")} className="cursor-pointer rounded-lg px-3 py-2.5 text-base font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy justify-between">
+                                                sign up
+                                                <UserRoundKey className="size-5 " />
                                             </DropdownMenuItem>
                                         </>)}
-
                                 </DropdownMenuContent>
                             </DropdownMenu>
 
@@ -469,29 +474,51 @@ export default function Header() {
                     </div>
 
                     <div className="shrink-0 border-t border-brand-beige/70 bg-brand-light-cream p-4">
-                        <div className="grid grid-cols-3 gap-2">
-                            {[
-                                { label: "Account", href: "/account", Icon: UserRound },
-                                { label: "Wishlist", href: "/wishlist", Icon: Heart },
-                                { label: "Orders", href: "/orders", Icon: Clock3 },
-                            ].map(({ label, href, Icon }) => (
-                                <Link
-                                    key={label}
-                                    href={href}
-                                    onClick={closeAll}
-                                    className="flex flex-col items-center gap-2 rounded-xl py-3 text-xs text-brand-brown transition hover:bg-brand-soft-card-beige"
-                                >
-                                    <Icon size={19} />
-                                    {label}
-                                </Link>
-                            ))}
-                        </div>
+                        {Login ?
+                            <div className="grid grid-cols-3 gap-2">
+                                {[
+                                    { label: "Account", href: "/account", Icon: UserRound },
+                                    { label: "Wishlist", href: "/wishlist", Icon: Heart },
+                                    { label: "Setting", href: "/Setting", Icon: Settings },
+                                ].map(({ label, href, Icon }) => (
+                                    <Link
+                                        key={label}
+                                        href={href}
+                                        onClick={closeAll}
+                                        className="flex flex-col items-center gap-2 rounded-xl py-3 text-xs text-brand-brown transition hover:bg-brand-soft-card-beige"
+                                    >
+                                        <Icon size={19} />
+                                        {label}
+                                    </Link>
+                                ))}
+                            </div>
+
+                            :
+                            <div className="flex gap-3 ">
+                                {[
+                                    { Label: "Login", href: "/Login", Icons: UserRound },
+                                    { Label: "Sign Up", href: "Signup", Icons: UserRoundKey }
+                                ].map(({ Label, href, Icons }) => (
+                                    <Link
+                                        key={Label}
+                                        href={href}
+                                        className="flex-1 flex justify-center items-center gap-2 text-sm bg-footer-gradient-start text-brand-cream rounded-2xl py-2 font-semibold "
+                                    >
+                                        <Icons size="22" />
+                                        {Label}
+                                    </Link>
+                                ))
+
+                                }
+
+                            </div>
+                        }
                         <button
                             type="button"
-                            onClick={openSearch}
+                            // onClick=""
                             className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border border-brand-beige bg-brand-cream py-3 text-sm text-brand-brown transition hover:border-brand-tan hover:bg-brand-soft-card-beige/50"
                         >
-                            <Search size={17} /> Search Collection
+                            <LogOut size={17} />Log Out
                         </button>
                     </div>
                 </aside>
