@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 type MenuType = "women" | "men" | "occasion" | "services";
 
@@ -87,6 +88,7 @@ export default function Header() {
     const headerRef = useRef<HTMLElement | null>(null);
     const [Login, setLogin] = useState(false)
     const router = useRouter()
+    const { User, checkAuth } = useAuth();
 
     const closeAll = useCallback(() => {
         setActiveMenu(null);
@@ -94,6 +96,10 @@ export default function Header() {
         setMobileOpen(false);
         setMobileExpanded(null);
     }, []);
+
+    useEffect(() => {
+        setLogin(User.User);
+    }, [User]);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -162,10 +168,9 @@ export default function Header() {
     };
 
     function LoginHandler() {
-
         router.push("/Login")
-
     }
+
 
     return (
         <>
@@ -296,7 +301,7 @@ export default function Header() {
                                     className="min-w-40 overflow-hidden rounded-xl border border-brand-beige/50 bg-brand-cream p-1.5 text-header-burgundy shadow-[0_12px_35px_rgba(46,42,36,0.16)] backdrop-blur-xl animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200"
                                 >
                                     {Login ? (<>
-                                        <DropdownMenuItem className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy">
+                                        <DropdownMenuItem onClick={()=> router.push("/Account")} className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy">
                                             My profile
                                         </DropdownMenuItem>
 
@@ -311,7 +316,7 @@ export default function Header() {
                                                 <UserRound className="size-5" />
                                             </DropdownMenuItem>
 
-                                            <DropdownMenuItem onClick={()=> router.push("/Signup")} className="cursor-pointer rounded-lg px-3 py-2.5 text-base font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy justify-between">
+                                            <DropdownMenuItem onClick={() => router.push("/Signup")} className="cursor-pointer rounded-lg px-3 py-2.5 text-base font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy justify-between">
                                                 sign up
                                                 <UserRoundKey className="size-5 " />
                                             </DropdownMenuItem>

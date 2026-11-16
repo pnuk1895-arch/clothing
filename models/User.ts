@@ -4,6 +4,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
+  confirmPassword:string;
   role: "user" | "admin";
   isActive: boolean;
   createdAt: Date;
@@ -30,6 +31,11 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
       select: false, // does not select password
+    },
+    confirmPassword: {
+      type:String,
+      required:true,
+      select:false
     },
     role: {
       type: String,

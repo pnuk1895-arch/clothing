@@ -11,6 +11,8 @@ import WhatOurCustomerSay from "@/components/HomeComponent/whatOurCustomerSay"
 import RealFashionMoments from "@/components/HomeComponent/RealFeashionMoment"
 import BeTheFirstToKnow from "@/components/HomeComponent/BeTheFirstToKnow"
 import Footer from "@/components/CommonComponent/Footer"
+// import { useState } from "react"
+import api from "@/lib/api-axios"
 
 
 const moments = [
@@ -70,8 +72,17 @@ const SectionDetail = {
 
 
 export default function HomePage() {
+    // const [user, setUser] = useState<boolean>(false)
 
-    console.log(moments)
+    // async function UserExist() {
+    //     try {
+    //         const response = await api.get("/api/Profile")
+    //         setUser(response.data.success)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
     return (
         <>
             <Header />

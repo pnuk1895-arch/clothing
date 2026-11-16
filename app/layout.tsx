@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ReactNode } from "react";
-
+import { Toaster } from "sonner";
+import { cn } from "@/lib/utils";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +17,18 @@ export default function RootLayout({ children, modal }: { children: ReactNode, m
       className={` h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <AuthProvider>
         {children}
+        <Toaster position="top-right" richColors visibleToasts={1} 
+        toastOptions={{
+          classNames:{
+            toast:cn("bg-brand-light-Cream"),
+            title:cn("text-brand-Cream")
+          } 
+        }}
+        />
         {modal}
+        </AuthProvider>
         </body>
     </html>
   );

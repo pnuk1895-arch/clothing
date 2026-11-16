@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import {
     FiUser,
     FiShoppingBag,
@@ -36,6 +36,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "../ui/select";
+import { useAuth } from "@/context/AuthContext";
 
 const bg_Image = "/images/Account/Account-bg.png";
 
@@ -48,32 +49,46 @@ const AccountLinks = [
 ];
 
 type ProfileType = {
-    "Full Name": string;
-    "Email address": string;
-    "Phone Number": string;
-    gender: string;
+    "Full Name": string | undefined;
+    "Email address": string | undefined;
+    "Phone Number"?: string | undefined;
+    gender?: string | undefined;
 };
 
 const Obj: ProfileType = {
-    "Full Name": "Priyanshu Negi",
-    "Email address": "priyanshu@example.com",
+    "Full Name": "",
+    "Email address": "",
     "Phone Number": "+91 98765 43210",
     gender: "Male",
 };
 
+
+
 export default function AcountComponent() {
     const [Edit, setEdit] = useState(false);
-    const [Profile, setProfile] = useState<ProfileType>(Obj);
+    const [Account, setAccount] = useState<ProfileType>(Obj);
     const [draft, setDraft] = useState<ProfileType>(Obj);
+    const { Profile, setProfile } = useAuth()
+
+    useEffect(() => {
+        if (Profile) {
+            setAccount({
+                "Full Name": Profile?.name,
+                "Email address": Profile?.email,
+                'Phone Number': "",
+                "gender": ""
+            })
+        }
+    }, [Profile])
 
     function EditHandler() {
-        setDraft({ ...Profile });
+        setDraft({ ...Account });
         setEdit(true);
     }
 
     function FromHandler(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        setProfile(draft);
+        setAccount(draft);
         setEdit(false);
         // Connect your backend API here to persist changes.
     }
@@ -155,10 +170,10 @@ export default function AcountComponent() {
 
                                 <div className="space-y-1 text-center">
                                     <h2 className="font-serif text-lg font-semibold text-brand-heading-dark">
-                                        {Profile["Full Name"]}
+                                        {Account["Full Name"]}
                                     </h2>
                                     <p className="text-xs text-brand-Brown">
-                                        {Profile["Email address"]}
+                                        {Account["Email address"]}
                                     </p>
                                 </div>
                             </Card>
@@ -266,7 +281,7 @@ export default function AcountComponent() {
                                             if (Edit) {
                                                 setEdit(false);
                                             } else {
-                                                EditHandler();
+                                                // EditHandler();
                                             }
                                         }}
                                         className="h-8 shrink-0 gap-1 px-2 text-xs text-header-burgundy"
@@ -280,6 +295,7 @@ export default function AcountComponent() {
                                 </div>
 
                                 {Edit ? (
+
                                     <form onSubmit={FromHandler} className="mt-4">
                                         <div className="grid grid-cols-1 gap-x-7 gap-y-4 sm:grid-cols-2">
                                             {(
@@ -345,7 +361,7 @@ export default function AcountComponent() {
                                     </form>
                                 ) : (
                                     <div className="mt-4 grid grid-cols-1 gap-x-7 gap-y-4 sm:grid-cols-2">
-                                        {Object.entries(Profile).map(([key, value]) => (
+                                        {Object.entries(Account).map(([key, value]) => (
                                             <div key={key} className="min-w-0 space-y-1">
                                                 <Label className="text-xs font-semibold capitalize text-brand-heading-dark">
                                                     {key}

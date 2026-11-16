@@ -1,7 +1,7 @@
 "use client"
 
 import LoginComponent from "@/components/LoginComponent/LoginComponent";
-import HomePage from "../page";
+import HomePage from "@/app/page";
 import { usePathname } from "next/navigation"
 
 

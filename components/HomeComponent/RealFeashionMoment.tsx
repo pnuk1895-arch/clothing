@@ -77,7 +77,7 @@ type RealFashionMomentsProps={
 }
 
 export default function RealFashionMoments({ moments = [], SectionDetail}:RealFashionMomentsProps) {
-    console.log(moments)
+    // console.log(moments)
     const galleryRef = useRef<HTMLDivElement | null>(null);
     const sectionRef = useRef<HTMLElement | null>(null);
     const [visible, setVisible] = useState(false);

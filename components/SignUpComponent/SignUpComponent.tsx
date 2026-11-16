@@ -3,25 +3,32 @@
 import { ArrowRight, LockKeyhole, Mail, UserRound, Gift, Heart, Package, Sparkles } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5"
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { Separator } from "../ui/separator";
+import { registerSchema } from "@/validations/auth.validation";
+import axios from "axios";
+import { toast } from "sonner"
+import apiCall from "./api";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 const InputData = [
-    { placeHolder: "Full Name", Name: "Full Name", InputIcon: UserRound },
-    { placeHolder: "mail Address", Name: "Email Address", InputIcon: Mail, },
-    { placeHolder: "Password", Name: "Password", InputIcon: LockKeyhole, },
-    { placeHolder: "Confirm Password", Name: "Confirm Password", InputIcon: LockKeyhole, }
+    { placeHolder: "Full Name", Name: "name", InputIcon: UserRound },
+    { placeHolder: "mail Address", Name: "email", InputIcon: Mail, },
+    { placeHolder: "Password", Name: "password", InputIcon: LockKeyhole, },
+    { placeHolder: "Confirm Password", Name: "confirmPassword", InputIcon: LockKeyhole, }
 ]
 
 export default function SignUpComponent() {
 
-    const [PasswordView, setPasswordView] = useState(true)
-
+    const [PasswordView, setPasswordView] = useState(false)
     const [CPasswordView, setCPasswordView] = useState(false)
+    const router = useRouter()
 
+    const { User } = useAuth();
 
     function ViewHandler() {
         if (PasswordView) {
@@ -30,7 +37,6 @@ export default function SignUpComponent() {
             setPasswordView(true)
         }
     }
-
     function ConfirmViewHandler() {
         if (CPasswordView) {
             setCPasswordView(false)
@@ -39,16 +45,64 @@ export default function SignUpComponent() {
         }
     }
 
-    async function SubmitHandler(event:React.FormEvent<HTMLFormElement>){
+    async function SubmitHandler(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault();
-        
-        const SignUpData=Object.fromEntries(new FormData(event.currentTarget))
+        try {
 
-        console.log(SignUpData)
-        
+            // collection fromData 
+            const SignUpData = Object.fromEntries(new FormData(event.currentTarget))
 
+            console.log(SignUpData)
+            // check whether all feild are filled 
+            const isEmpty = Object.values(SignUpData).every(
+                (value) => {
+                    return value.toString().trim() !== "";
+                }
+            )
+            console.log("empty", isEmpty)
+            if (!isEmpty) {
+                toast.error("Please fill all required fields.")
+                return
+            }
+
+
+            // Zod validation 
+            const result = registerSchema.safeParse(SignUpData);
+
+            if (!result.success) {
+                toast.error(result.error.issues[0].message)
+                return
+            };
+
+            // api call 
+            const response = await apiCall(result.data)
+            //display success output 
+            toast.success(response.data?.message)
+
+            if (response.data?.success) {
+                router.push('/')
+                User.setUser(response.data?.success)
+                console.log(response.data?.success)
+            }
+
+        } catch (error) {
+
+            if (axios.isAxiosError(error)) {
+
+                if (error.response?.status === 409) {
+                    toast.error(error.response?.data?.message)
+                    console.log("User already exists. Please login.");
+
+                    return;
+                }
+
+                console.log("API Error:", error.response?.data);
+                toast.error(error.response?.data?.message)
+            } else {
+                console.error(error);
+            }
+        }
     }
-
     return (
         <>
             <div className="min-h-16 sm:min-h-24 lg:min-h-26" />
@@ -178,7 +232,7 @@ export default function SignUpComponent() {
                                                         className="h-10 min-w-0 flex-1 border-0 bg-transparent px-1 text-xs shadow-none focus-visible:ring-0 sm:text-sm"
                                                     />
 
-                                                    {data.Name === "Password" ? (
+                                                    {data.placeHolder === "Password" ? (
                                                         <button
                                                             type="button"
                                                             onClick={ViewHandler}
@@ -191,7 +245,7 @@ export default function SignUpComponent() {
                                                                 <IoEyeOffOutline className="size-4 cursor-pointer sm:size-5" />
                                                             )}
                                                         </button>
-                                                    ) : data.Name === "Confirm Password" ? (
+                                                    ) : data.placeHolder === "Confirm Password" ? (
                                                         <button
                                                             type="button"
                                                             onClick={ConfirmViewHandler}
@@ -215,6 +269,8 @@ export default function SignUpComponent() {
 
                                             <Input
                                                 type="checkbox"
+                                                name="Terms"
+
                                                 className="mt-0.5 size-4 shrink-0 sm:mt-0"
                                             />
 
@@ -282,14 +338,14 @@ export default function SignUpComponent() {
                                     <div className="flex flex-wrap items-center justify-center gap-2 text-center">
 
                                         <p className="text-xs">
-                                            Don't have an account?
+                                            Already have an account?
                                         </p>
 
                                         <button
                                             type="button"
                                             className="flex items-center gap-1 text-xs font-semibold text-brand-deep-burgundy"
                                         >
-                                            <span>Sign Up</span>
+                                            <span>Login</span>
                                             <ArrowRight className="size-4" />
                                         </button>
 
@@ -300,8 +356,6 @@ export default function SignUpComponent() {
                             </Card>
                         </div>
                     </div>
-
-
                 </div>
             </section>
         </>
