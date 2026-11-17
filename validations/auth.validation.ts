@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+
+// SignUp data authentication schema 
 export const registerSchema = z.object({
   name: z
     .string()
@@ -15,7 +17,10 @@ export const registerSchema = z.object({
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
-    .max(100, "Password is too long"),
+    .regex(/[A-Z]/, "Password must contain one uppercase letter")
+    .regex(/[0-9]/, "Password must contain one number")
+    .regex(/[^A-Za-z0-9]/, "Password must contain one special character")
+    .max(16, "Password is too long"),
 
   confirmPassword: z
     .string()
@@ -28,3 +33,21 @@ export const registerSchema = z.object({
 )
 
 export type RegisterInput = z.infer<typeof registerSchema>;
+
+
+// login data authentication schema 
+
+export const LoginSchema = z.object(
+  {
+    email: z.string()
+      .trim()
+      .toLowerCase()
+      .email("Please enter vaild email"),
+
+    password: z.string()
+      .min(1, "Password is required")
+  }
+)
+
+
+export type LoginInput = z.infer<typeof LoginSchema>

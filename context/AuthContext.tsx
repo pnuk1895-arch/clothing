@@ -8,6 +8,9 @@ export interface ProfileType {
     _id: string;
     name: string;
     email: string;
+    PhoneNumber:number;
+    address:string;
+    IsActive:boolean
 }
 interface UserType {
     User: boolean;

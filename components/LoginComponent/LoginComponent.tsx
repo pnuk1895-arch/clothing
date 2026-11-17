@@ -2,18 +2,25 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, CrossIcon } from "lucide-react";
+import { ArrowRight, CrossIcon, User } from "lucide-react";
 import { MdLockOutline, MdMailOutline } from "react-icons/md";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import React, { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react";
-
+import api from "@/lib/api-axios";
+import axios from "axios";
+import { CollectAndAuthFrom } from "@/lib/FormData";
+import { LoginSchema } from "@/validations/auth.validation";
+import { toast } from "sonner";
+import { AppError } from "@/lib/error";
+import { useAuth } from "@/context/AuthContext";
 
 export default function LoginComponent() {
 
     const [PasswordView, setPasswordView] = useState(false)
+    const { User, setProfile, Profile} =useAuth();
 
     const router = useRouter()
 
@@ -25,22 +32,59 @@ export default function LoginComponent() {
         }
     }
 
-    useEffect(()=>{
-        const previousOverflow= document.body.style.overflow
-    
-        document.body.style.overflow="hidden"
-    
-        return ()=>{
-          document.body.style.overflow=previousOverflow
-        }
-    
-      })
+    useEffect(() => {
+        const previousOverflow = document.body.style.overflow
 
-      function backHandler(e:React.MouseEvent<HTMLDivElement>){
-        if(e.target === e.currentTarget){
+        document.body.style.overflow = "hidden"
+
+        return () => {
+            document.body.style.overflow = previousOverflow
+        }
+
+    })
+
+    function backHandler(e: React.MouseEvent<HTMLDivElement>) {
+        if (e.target === e.currentTarget) {
             router.back()
         }
-      }
+    }
+
+    async function LoginHandler(e: React.SubmitEvent<HTMLFormElement>) {
+        try {
+            const LoginData = CollectAndAuthFrom(e)
+
+            const data = LoginSchema.safeParse(LoginData)
+
+            if (!data.success) {
+                toast.error(data.error.issues[0].message)
+            }
+
+            const response = await api.post("/api/Login", data.data)
+
+            toast.success(response.data?.message)
+            console.log("login",response.data)
+            User.setUser(true)
+            setProfile(response.data.data)
+            console.log("profile", Profile)
+            router.push("/")
+
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                toast.error(error.response?.data?.message ?? error.message)
+                console.log("error", error.message, error.stack)
+            } else if (error instanceof AppError) {
+                toast.error(error.message)
+                console.log("error", error.message, error.stack)
+            } else if (error instanceof Error) {
+                toast.error(error.message)
+                console.log(error, "error")
+            } else {
+                // toast.error(error)
+                console.log("error", error)
+            }
+
+        }
+    }
 
     return (
         <section onClick={backHandler} className="fixed inset-0 z-50 grid place-items-center px-4 backdrop-blur-sm">
@@ -71,12 +115,13 @@ export default function LoginComponent() {
                     </CardHeader>
 
                     <CardContent className="w-full px-3">
-                        <form action="" className="my-4 flex flex-col gap-3">
+                        <form onSubmit={LoginHandler} className="my-4 flex flex-col gap-3">
 
                             <div className="flex items-center rounded-lg border border-brand-tan/80 bg-brand-cream/40 px-2">
                                 <MdMailOutline className="size-5 shrink-0" />
                                 <Input
                                     placeholder="Email address"
+                                    name="email"
                                     className="border-0 text-sm font-semibold text-header-burgundy focus-visible:ring-0 focus-visible:outline-none"
                                 />
                             </div>
@@ -87,6 +132,7 @@ export default function LoginComponent() {
                                 <Input
                                     placeholder="Password"
                                     type={PasswordView ? "password" : "text"}
+                                    name="password"
                                     className="border-0 text-sm font-semibold text-header-burgundy focus-visible:ring-0 focus-visible:outline-none"
                                 />
 
@@ -133,9 +179,9 @@ export default function LoginComponent() {
                     <div className="flex w-full gap-2 px-4 py-3">
                         <button type="button" className="flex-1 flex items-center justify-center gap-1 rounded-xl border border-brand-tan/80 bg-brand-cream/40 py-1.5 text-xs font-semibold capitalize">
                             <Icon
-                                icon="devicon:google" 
+                                icon="devicon:google"
                                 className="size-5"
-                                />
+                            />
                             google
                         </button>
 

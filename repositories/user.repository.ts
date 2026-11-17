@@ -1,13 +1,15 @@
 import User, { IUser } from "@/models/User";
 
 export const userRespository = {
-  findByEamil(email: string, includePassword = false) {
-    const query = User.findOne({ email: email.toLowerCase() }).select(
-      "+password",
-    );
+  findByEamil(email: string, includePassword = false, Select?:string | undefined ) {
+    const query = User.findOne({ email: email.toLowerCase() });
+
+    if (Select) {
+      query.select(Select);
+    }
 
     if (includePassword) {
-      query.select("+password");
+      query.select(Select ?? "+password");
     }
 
     return query;

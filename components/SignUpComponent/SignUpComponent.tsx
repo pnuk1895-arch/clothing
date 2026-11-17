@@ -14,6 +14,7 @@ import { toast } from "sonner"
 import apiCall from "./api";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { CollectAndAuthFrom } from "@/lib/FormData";
 
 const InputData = [
     { placeHolder: "Full Name", Name: "name", InputIcon: UserRound },
@@ -46,25 +47,10 @@ export default function SignUpComponent() {
     }
 
     async function SubmitHandler(event: React.SubmitEvent<HTMLFormElement>) {
-        event.preventDefault();
         try {
 
             // collection fromData 
-            const SignUpData = Object.fromEntries(new FormData(event.currentTarget))
-
-            console.log(SignUpData)
-            // check whether all feild are filled 
-            const isEmpty = Object.values(SignUpData).every(
-                (value) => {
-                    return value.toString().trim() !== "";
-                }
-            )
-            console.log("empty", isEmpty)
-            if (!isEmpty) {
-                toast.error("Please fill all required fields.")
-                return
-            }
-
+            const SignUpData = CollectAndAuthFrom(event)
 
             // Zod validation 
             const result = registerSchema.safeParse(SignUpData);
@@ -80,9 +66,10 @@ export default function SignUpComponent() {
             toast.success(response.data?.message)
 
             if (response.data?.success) {
-                router.push('/')
-                User.setUser(response.data?.success)
+                
+                User.setUser(true)
                 console.log(response.data?.success)
+                router.push('/')
             }
 
         } catch (error) {
@@ -92,15 +79,17 @@ export default function SignUpComponent() {
                 if (error.response?.status === 409) {
                     toast.error(error.response?.data?.message)
                     console.log("User already exists. Please login.");
-
                     return;
                 }
-
-                console.log("API Error:", error.response?.data);
                 toast.error(error.response?.data?.message)
-            } else {
-                console.error(error);
             }
+            if(error instanceof Error)
+            {
+                toast.error(error.message)
+                return
+            }
+
+            toast.error("something went wrongx")
         }
     }
     return (
@@ -343,6 +332,7 @@ export default function SignUpComponent() {
 
                                         <button
                                             type="button"
+                                            onClick={()=> router.push("/Login")}
                                             className="flex items-center gap-1 text-xs font-semibold text-brand-deep-burgundy"
                                         >
                                             <span>Login</span>

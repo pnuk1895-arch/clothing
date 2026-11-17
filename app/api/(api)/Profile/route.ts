@@ -16,8 +16,6 @@ export async function GET(request: NextRequest) {
 
         const User = await CurrentProfile(token)
 
-        console.log("user:",User)
-
         return NextResponse.json({
             success: true,
             message: "User have been Registered",
@@ -28,7 +26,6 @@ export async function GET(request: NextRequest) {
             })
 
     } catch (error) {
-        console.log("error;",error)
         return NextResponse.json({
             success: false,
             message: "User does not exist"

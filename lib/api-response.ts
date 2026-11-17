@@ -3,9 +3,10 @@ import { NextResponse } from "next/server";
 export function successResponse<T>(
   data: T,
   message = "Request Successful",
-  status: 200,
+  status: number,
+  token?: string
 ) {
-  return NextResponse.json(
+  const response = NextResponse.json(
     {
       success: true,
       message,
@@ -13,6 +14,18 @@ export function successResponse<T>(
     },
     { status },
   );
+
+  if (token) {
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24
+    });
+  }
+
+  return response
 }
 
 export function errorResponse<T>(

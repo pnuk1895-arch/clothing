@@ -29,6 +29,8 @@ import {
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import api from "@/lib/api-axios";
+import { toast } from "sonner";
 
 type MenuType = "women" | "men" | "occasion" | "services";
 
@@ -78,6 +80,8 @@ const NAV_LINKS: NavLinkItem[] = [
     { label: "Contact", href: "/Contact" },
 ];
 
+
+
 export default function Header() {
     const [scrolled, setScrolled] = useState(false);
     const [activeMenu, setActiveMenu] = useState<MenuType | null>(null);
@@ -88,7 +92,7 @@ export default function Header() {
     const headerRef = useRef<HTMLElement | null>(null);
     const [Login, setLogin] = useState(false)
     const router = useRouter()
-    const { User, checkAuth } = useAuth();
+    const { User, setProfile } = useAuth();
 
     const closeAll = useCallback(() => {
         setActiveMenu(null);
@@ -171,6 +175,22 @@ export default function Header() {
         router.push("/Login")
     }
 
+    async function LogOutHandler() {
+        try {
+
+            const response = await api.post("/api/Logout")
+            toast.success(response?.data?.message)
+            router.push("/")
+            User.setUser(false)
+            setProfile(undefined)
+        } catch (error) {
+
+            if(error){
+                console.log(error)
+                toast.error("Logout failed")
+            }
+        }
+    }
 
     return (
         <>
@@ -301,11 +321,11 @@ export default function Header() {
                                     className="min-w-40 overflow-hidden rounded-xl border border-brand-beige/50 bg-brand-cream p-1.5 text-header-burgundy shadow-[0_12px_35px_rgba(46,42,36,0.16)] backdrop-blur-xl animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200"
                                 >
                                     {Login ? (<>
-                                        <DropdownMenuItem onClick={()=> router.push("/Account")} className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy">
+                                        <DropdownMenuItem onClick={() => router.push("/Account")} className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy">
                                             My profile
                                         </DropdownMenuItem>
 
-                                        <DropdownMenuItem className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy">
+                                        <DropdownMenuItem onClick={LogOutHandler} className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium capitalize transition-all duration-200 hover:bg-brand-beige/50 hover:pl-4 hover:text-brand-deep-burgundy focus:bg-brand-beige/50 focus:text-brand-deep-burgundy">
                                             Log Out
                                         </DropdownMenuItem>
                                     </>)

@@ -16,8 +16,6 @@ const SectionDetailHero = {
 
 }
 
-
-
 import CollectionsYouLove from "@/components/CommonComponent/CollectionYouLove";
 import WhyShopNewArrival from "@/components/NewArrivalComponents/WhyShopNewArrival";
 import RealFashionMoments from "@/components/HomeComponent/RealFeashionMoment";

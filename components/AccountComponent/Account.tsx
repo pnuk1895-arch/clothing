@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState } from "react";
 import {
     FiUser,
     FiShoppingBag,
@@ -51,17 +51,16 @@ const AccountLinks = [
 type ProfileType = {
     "Full Name": string | undefined;
     "Email address": string | undefined;
-    "Phone Number"?: string | undefined;
-    gender?: string | undefined;
+    "Phone Number": string | undefined;
+    gender: string | undefined;
 };
 
 const Obj: ProfileType = {
     "Full Name": "",
     "Email address": "",
-    "Phone Number": "+91 98765 43210",
-    gender: "Male",
+    "Phone Number": "",
+    gender: "",
 };
-
 
 
 export default function AcountComponent() {
@@ -71,6 +70,8 @@ export default function AcountComponent() {
     const { Profile, setProfile } = useAuth()
 
     useEffect(() => {
+
+        console.log("profile:", Profile)
         if (Profile) {
             setAccount({
                 "Full Name": Profile?.name,
@@ -86,11 +87,11 @@ export default function AcountComponent() {
         setEdit(true);
     }
 
-    function FromHandler(e: FormEvent<HTMLFormElement>) {
+    function FromHandler(e: React.SubmitEvent<HTMLFormElement>) {
         e.preventDefault();
         setAccount(draft);
         setEdit(false);
-        // Connect your backend API here to persist changes.
+
     }
 
     function updateField(key: keyof ProfileType, value: string) {
@@ -99,6 +100,8 @@ export default function AcountComponent() {
             [key]: value,
         }));
     }
+
+
 
     return (
         <>
@@ -281,7 +284,7 @@ export default function AcountComponent() {
                                             if (Edit) {
                                                 setEdit(false);
                                             } else {
-                                                // EditHandler();
+                                                EditHandler();
                                             }
                                         }}
                                         className="h-8 shrink-0 gap-1 px-2 text-xs text-header-burgundy"
