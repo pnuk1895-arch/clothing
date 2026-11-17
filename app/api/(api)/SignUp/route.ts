@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     const token = user.Token;
 
     return successResponse(user, "Signup successfully", 201, token)
-
+    
 
   } catch (error) {
     
