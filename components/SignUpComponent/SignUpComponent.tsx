@@ -29,7 +29,7 @@ export default function SignUpComponent() {
     const [CPasswordView, setCPasswordView] = useState(false)
     const router = useRouter()
 
-    const { User } = useAuth();
+    const { User, setProfile } = useAuth();
 
     function ViewHandler() {
         if (PasswordView) {
@@ -68,7 +68,7 @@ export default function SignUpComponent() {
             if (response.data?.success) {
                 
                 User.setUser(true)
-                console.log(response.data?.success)
+                setProfile(response.data.data)
                 router.push('/')
             }
 
